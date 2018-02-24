@@ -5,17 +5,38 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">我是用户登录后界面Dashboard</div>
+                <div class="card-header">用户登录界面</div>
 
                 <div class="card-body">
-                    @if (session('status'))
                    
-                        <div class="alert alert-success">
-                            {{ session('status') }}
+                    <div class="form-group row text-center">
+                        <div class="col-md-4 form-group">
+                            <a href="{{ route('/') }}"><button type="button" class="btn btn-primary">买 房</button></a>
                         </div>
-                    @endif
 
-                    You are logged in!
+                        <div class="col-md-4">
+                            <a href="{{ route('/') }}"><button type="button" class="btn btn-primary">卖 房</button></a>
+                        </div>
+
+                        <div class="col-md-4">
+                            <a href="{{ route('/') }}"><button type="button" class="btn btn-primary">挑 房</button></a>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            买房
+                        </div>
+                        <div class="col-md-4">
+                            卖房
+                        </div>
+                        <div class="col-md-4">
+                            浏览
+                        </div>
+                         
+                    </div>
+
+
                 </div>
             </div>
         </div>

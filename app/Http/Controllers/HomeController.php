@@ -36,7 +36,7 @@ class HomeController extends Controller
 
     public function indexOfUser()
     {
-       
+
         return view('user.home');
     }
 
