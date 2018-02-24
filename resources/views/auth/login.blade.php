@@ -11,13 +11,11 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="account_phone" class="col-sm-4 col-form-label text-md-right">账户</label>
-
-                            <div class="col-md-6">
-                                <input id="account_phone" type="text" class="form-control{{ $errors->has('account_phone') ? ' is-invalid' : '' }}" name="account_phone" value="{{ old('account_phone') }}" required autofocus>
+                        <div class="form-group row justify-content-center">
+                            <div class="input-group col-md-8">
+                                <span class="input-group-btn"><button class="btn" style="background-color: transparent;width: 40px" type="button"><i class="icon-user"></i></button></span>
+                                <input placeholder="手机号码" type="tel" id="account_phone" aria-describedby="basic-addon1" class="form-control{{ $errors->has('account_phone') ? ' is-invalid' : '' }}" name="account_phone" value="{{ old('account_phone') }}" required autofocus>
                                 @if ($errors->has('account_phone'))
-
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('account_phone') }}</strong>
                                     </span>
@@ -25,12 +23,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">密码</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                        <div class="form-group row justify-content-center">
+                            <div class="input-group col-md-8">
+                                <span class="input-group-btn"><button class="btn" style="background-color: transparent;width: 40px" type="button"><i class="icon-lock"></i></button></span>
+                                <input placeholder="密码" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -39,19 +35,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="role" class="col-md-4 col-form-label text-md-right">角色</label>
-
-                            <div class="col-md-6">
-                                <select id="role" name="role" class="form-control">
+                        <div class="form-group row justify-content-center">
+                            <div class="input-group col-md-8">
+                                <span class="input-group-btn"><button class="btn" style="background-color: transparent;width: 40px" type="button"></button></span>
+                                    <select id="role" name="role" class="form-control">
                                     <option value="user">买房卖房</option>
                                     <option value="agent">中介职员</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-8 text-center">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
@@ -60,10 +55,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-8 text-center">
                                 <button type="submit" class="btn btn-primary">
-                                    登 录
+                                    <i class="icon-flag"></i> 登 录
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">

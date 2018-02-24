@@ -11,11 +11,11 @@
                    
                     <div class="form-group row text-center">
                         <div class="col-md-4 form-group">
-                            <a href="{{ route('/') }}"><button type="button" class="btn btn-primary">买 房</button></a>
+                            <a href="{{ route('/') }}"><button type="button" class="btn btn-primary"><img src="img/zhua.png">买 房</button></a>
                         </div>
 
                         <div class="col-md-4">
-                            <a href="{{ route('/') }}"><button type="button" class="btn btn-primary">卖 房</button></a>
+                            <a href="{{ route('/') }}" class="btn btn-primary active" role="button">卖 房</a>
                         </div>
 
                         <div class="col-md-4">
@@ -25,7 +25,9 @@
 
                     <div class="form-group row">
                         <div class="col-md-4">
-                            买房
+                           <button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+</button>
                         </div>
                         <div class="col-md-4">
                             卖房
