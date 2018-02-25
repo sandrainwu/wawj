@@ -58,7 +58,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="col-md-8 text-center">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="icon-flag"></i> 登 录
+                                    <i class="icon-unlock"></i> 登 录
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
