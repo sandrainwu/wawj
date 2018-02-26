@@ -1,19 +1,21 @@
 @extends('layouts.userhome')
 
 @section('content')
+<script src="{{ asset('js/getcity.js') }}"></script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">用户登录界面</div>
+                <div class="card-header">我要卖房</div>
 
                 <div class="card-body">
                    
-                    <div class="row text-center">
-                        <div class="col-md-12">
-                            <a href="{{ route('buyhouse') }}" class="btn btn-primary btn-lg" style="width: 100px"><i class="icon-home"></i> 买 房</a>
-                        
-                            <a href="{{ route('salehouse') }}" class="btn btn-primary btn-lg" style="width: 100px"><i class="icon-dollar"></i> 卖 房</a>
+                    <div class="row">
+                        <div class="input-group col-md-8">
+                            <span class="input-group-btn"><button class="btn" style="background-color: transparent;width: 40px" type="button"><i class="icon-user"></i></button></span>
+                            <input placeholder="小区名称" type="tel" id="account_phone" aria-describedby="basic-addon1" class="form-control{{ $errors->has('account_phone') ? ' is-invalid' : '' }}" name="account_phone" value="{{ old('account_phone') }}" required autofocus>
+                            
                         </div>
 
                     </div>
