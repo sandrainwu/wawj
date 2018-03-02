@@ -1,63 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>基于浏览器的HTML5查找地理位置</title>
-    <!-- 百度API -->
-    <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
-    <script>
-        function getLocation(){
-            var options={
-                enableHighAccuracy:true,
-                maximumAge:1000
-            }
-            if(navigator.geolocation){
-                //浏览器支持geolocation
-                navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
-            }else{
-                //浏览器不支持geolocation
-                alert('您的浏览器不支持地理位置定位');
-            }
-        }
-        //成功时
-        function onSuccess(position){
-            //返回用户位置
-            //经度
-            var longitude =position.coords.longitude;
-            //纬度
-            var latitude = position.coords.latitude;
-            alert('经度'+longitude+'，纬度'+latitude);
+<!doctype html>
+<html lang="zh-CN">
 
-            //根据经纬度获取地理位置，不太准确，获取城市区域还是可以的
-            var map = new BMap.Map("allmap");
-            var point = new BMap.Point(longitude,latitude);
-            var gc = new BMap.Geocoder();
-            gc.getLocation(point, function(rs){
-                var addComp = rs.addressComponents;
-                alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-            });
-        }
-        //失败时
-        function onError(error){
-            switch(error.code){
-                case 1:
-                    alert("位置服务被拒绝");
-                    break;
-                case 2:
-                    alert("暂时获取不到位置信息");
-                    break;
-                case 3:
-                    alert("获取信息超时");
-                    break;
-                case 4:
-                    alert("未知错误");
-                    break;
-            }
-        }
-        window.onload=getLocation;
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--引入高德地图JSAPI -->
+<script type="text/javascript" src="//webapi.amap.com/maps?v=1.3&key=160cab8ad6c50752175d76e61ef92c50"></script>
+
+<!--引入UI组件库（1.0版本） -->
+<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+</head>
+
+<body>
+   <div id="container">
+    </div>
+    <button id="openBtn">选择城市</button>
+    <div><pre id="selectedCityInfo"></pre></div>
+<script>
+
+AMapUI.setDomLibrary(Zepto);
+
+//加载MobiCityPicker，loadUI的路径参数为模块名中 'ui/' 之后的部分
+AMapUI.loadUI(['misc/MobiCityPicker'], function(MobiCityPicker) {
+
+    AMapUI.loadCss('./red-theme.css', function() {
+
+        var cityPicker = new MobiCityPicker({
+                //设置主题（同名的className会被添加到外层容器上）
+        theme: 'red'
+        });
+
+    cityPickerReady(cityPicker);
+    cityPicker.show();
+});
 
     </script>
-</head>
-<body>
 </body>
+
 </html>

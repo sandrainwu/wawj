@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>自定义主题</title>
+    <link href="http://webapi.amap.com/ui/1.0/ui/misc/MobiCityPicker/examples/common.css" rel="stylesheet" type="text/css" />
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
+    
+    #container {
+        height: 50%;
+        background: red;
+    }
+    
+    #openBtn {
+        margin: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+    </div>
+    <button id="openBtn">选择城市</button>
+    <div><pre id="selectedCityInfo"></pre></div>
+    <script type="text/javascript" src='//webapi.amap.com/maps?v=1.3&key=160cab8ad6c50752175d76e61ef92c50'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    <!-- <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script> -->
+    <script src="webapi.amap.com/ui/1.0/ui/misc/MobiCityPicker/examples/common.js?v=1.0.11"></script>
+    <script type="text/javascript">
+    AMapUI.setDomLibrary(Zepto);
+
+    AMapUI.loadUI(['misc/MobiCityPicker'], function(MobiCityPicker) {
+
+        //动态加载自定义的红色主题， 如果css已经写在当前页面中，可忽略此步骤
+        AMapUI.loadCss('./red-theme.css', function() {
+
+            var cityPicker = new MobiCityPicker({
+                //设置主题（同名的className会被添加到外层容器上）
+                theme: 'red'
+            });
+
+            cityPickerReady(cityPicker);
+
+            cityPicker.show();
+        });
+    });
+    </script>
+</body>
+
+</html>

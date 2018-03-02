@@ -14,7 +14,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="input-group col-md-8">
                                 <span class="input-group-btn"><button class="btn" style="background-color: transparent;width: 40px" type="button"><i class="icon-user"></i></button></span>
-                                <input placeholder="手机号码" type="tel" id="account_phone" aria-describedby="basic-addon1" class="form-control{{ $errors->has('account_phone') ? ' is-invalid' : '' }}" name="account_phone" value="{{ old('account_phone') }}" required autofocus>
+                                <input placeholder="手机号码" tabindex="1" type="tel" id="account_phone" aria-describedby="basic-addon1" class="form-control{{ $errors->has('account_phone') ? ' is-invalid' : '' }}" name="account_phone" value="{{ old('account_phone') }}" required autofocus>
                                 @if ($errors->has('account_phone'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('account_phone') }}</strong>
@@ -26,7 +26,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="input-group col-md-8">
                                 <span class="input-group-btn"><button class="btn" style="background-color: transparent;width: 40px" type="button"><i class="icon-lock"></i></button></span>
-                                <input placeholder="密码" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input placeholder="密码" tabindex="2" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -38,9 +38,9 @@
                         <div class="form-group row justify-content-center">
                             <div class="input-group col-md-8">
                                 <span class="input-group-btn"><button class="btn" style="background-color: transparent;width: 40px" type="button"></button></span>
-                                    <select id="role" name="role" class="form-control">
-                                    <option value="user">买房卖房</option>
-                                    <option value="agent">中介职员</option>
+                                    <select id="role" tabindex="3" name="role" class="form-control">
+                                    <option value="user">买房卖房者</option>
+                                    <option value="agent">交易服务者</option>
                                 </select>
                             </div>
                         </div>
@@ -57,11 +57,11 @@
 
                         <div class="form-group row justify-content-center">
                             <div class="col-md-8 text-center">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" tabindex="4">
                                     <i class="icon-unlock"></i> 登 录
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="btn btn-link" href="{{ route('password.request') }} " tabindex="5">
                                     忘记密码
                                 </a>
                             </div>
