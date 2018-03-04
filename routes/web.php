@@ -24,6 +24,7 @@ Route::prefix('agent')->group(function () {
 
 Route::prefix('user')->group(function () {
 	Route::get('/', 'UserController@HomeOfUser')->name('user');
-    Route::get('buyhouse', 'UserController@BuyHouse')->name('buyhouse');
-    Route::get('salehouse', 'UserController@SaleHouse')->name('salehouse');
+    Route::get('buyHouse', 'UserController@buyHouse')->name('buyHouse');
+    Route::get('saleHouse', 'UserController@saleHouse')->name('saleHouse');
+	Route::post('saleHouseSave', 'UserController@saleHouseSave')->name('saleHouseSave');
 });

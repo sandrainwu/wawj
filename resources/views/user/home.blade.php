@@ -11,9 +11,9 @@
                    
                     <div class="row text-center">
                         <div class="col-md-12">
-                            <a href="{{ route('buyhouse') }}" class="btn btn-primary btn-lg" style="width: 100px"><i class="icon-home"></i> 买 房</a>
+                            <a href="{{ route('buyHouse') }}" class="btn btn-primary btn-lg" style="width: 100px"><i class="icon-home"></i> 买 房</a>
                         
-                            <a href="{{ route('salehouse') }}" class="btn btn-primary btn-lg" style="width: 100px"><i class="icon-dollar"></i> 卖 房</a>
+                            <a href="{{ route('saleHouse') }}" class="btn btn-primary btn-lg" style="width: 100px"><i class="icon-dollar"></i> 卖 房</a>
                         </div>
 
                     </div>

@@ -16,7 +16,7 @@ class AgentController extends Controller
     
     }
     
-	public function HomeOfAgent()
+	public function homeOfAgent()
     {
         
         return view('agent.home');

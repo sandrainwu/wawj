@@ -3,34 +3,74 @@
 @section('content')
 <script src="{{ asset('js/getcity.js') }}"></script>
 
+
+<form action="{{ route('saleHouseSave') }}" method="post">
+<input type="hidden" name="user_id" value="{{  Auth::id() }}">
+@CSRF
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
                 <div class="card-header">我要卖房</div>
 
-                <div class="card-body">
+
+
+                <div class="card-body justify-content-center text-center">
                    
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <div class="input-group col-md-8">
-                            <span class="input-group-btn"><button class="btn" style="background-color: transparent;width: 40px" type="button"><i class="icon-user"></i></button></span>
-                            <input placeholder="小区名称" type="tel" id="account_phone" aria-describedby="basic-addon1" class="form-control{{ $errors->has('account_phone') ? ' is-invalid' : '' }}" name="account_phone" value="{{ old('account_phone') }}" required autofocus>
+                            
+                            <input placeholder="住宅小区名称" type="text" class="form-control{{ $errors->has('community') ? ' is-invalid' : '' }}" name="community" value="{{ old('community') }}" required autofocus>
+                            
+                        </div>
+
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="input-group col-md-8">
+                            <select name="house_type" class="form-control"> 
+                                <option value="别墅">别墅</option>
+                                <option value="排屋">排屋</option>
+                                <option value="普通住宅" selected>普通住宅</option>
+                                <option value="公寓">公寓</option>
+                                <option value="商住楼">商住楼</option>
+                                <option value="写字楼">写字楼</option>
+                                <option value="商铺">商铺</option>
+                                <option value="工业物业">工业物业</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="input-group col-md-8">
+                            
+                            <input placeholder="建筑面积" type="text" class="form-control{{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area') }}" required>
+                            
+                        </div>
+
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="input-group col-md-8">
+                            
+                            <input placeholder="房产证编号" type="text" class="form-control{{ $errors->has('certificate_number') ? ' is-invalid' : '' }}" name="certificate_number" value="{{ old('certificate_number') }}" required>
+                            
+                        </div>
+
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="input-group col-md-8">
+                            
+                            <input placeholder="房屋特点" type="text" class="form-control{{ $errors->has('feature') ? ' is-invalid' : '' }}" name="feature" value="{{ old('feature') }}" required>
                             
                         </div>
 
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-md-4">
-                           <button type="button" class="btn btn-default btn-lg">
-  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-</button>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary">提交</button>
                         </div>
-                        <div class="col-md-4">
-                            卖房
-                        </div>
-                        <div class="col-md-4">
-                            浏览
+                        <div class="col-md-6">
+                            <button type="reset" class="btn btn-primary">重写</button>
                         </div>
                          
                     </div>
@@ -41,4 +81,6 @@
         </div>
     </div>
 </div>
+
+</form>
 @endsection

@@ -38,7 +38,7 @@
                         <div class="form-group row justify-content-center">
                             <div class="input-group col-md-8">
                                 <span class="input-group-btn"><button class="btn" style="background-color: transparent;width: 40px" type="button"></button></span>
-                                    <select id="role" tabindex="3" name="role" class="form-control">
+                                <select id="role" tabindex="3" name="role" class="form-control">
                                     <option value="user">买房卖房者</option>
                                     <option value="agent">交易服务者</option>
                                 </select>
