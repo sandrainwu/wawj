@@ -18,11 +18,12 @@
 
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="col-md-4">
-                           <button type="button" class="btn btn-default btn-lg">
-  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-</button>
+                           <a href="{{ route('postList', ['id' => Auth::id()]) }}" class="btn btn-primary btn-lg">我发布的信息</a>
+                            
+
+                        
                         </div>
                         <div class="col-md-4">
                             卖房

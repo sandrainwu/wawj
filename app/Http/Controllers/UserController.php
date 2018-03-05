@@ -77,4 +77,27 @@ class UserController extends Controller
     
     }
 
+    protected function myPostList()
+    {
+       
+        return SaleHouse::create([
+                'user_id' => $data['user_id'],
+                'community' => $data['community'],
+                'house_type' => $data['house_type'],
+                'area' => $data['area'],
+                'certificate_number' => $data['certificate_number'],
+                'feature' => $data['feature'],
+            ]);
+    
+    }
+
+
+
+
+
+
+
+
+
+
 }
