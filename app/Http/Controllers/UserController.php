@@ -53,7 +53,7 @@ class UserController extends Controller
         	'feature.Required'=>'请填写房产特点',
         ];
         return Validator::make($data, [
-            'user_id' => 'required',
+            'user_id' => 'required|integer',
             'house_type' => 'required',
             'area' => 'required',
             'certificate_number' => 'required',
