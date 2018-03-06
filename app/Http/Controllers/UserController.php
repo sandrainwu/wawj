@@ -37,7 +37,7 @@ class UserController extends Controller
 	{
 
         $this->validator($request->all())->validate();
-        $this->create($request->all());
+        $this->createSaleHouse($request->all());
         return view('user.salehousesavedsuccess');
 
     }
@@ -63,7 +63,7 @@ class UserController extends Controller
     }
 
 
-	protected function create(array $data)
+	protected function createSaleHouse(array $data)
     {
        
         return SaleHouse::create([
@@ -77,7 +77,7 @@ class UserController extends Controller
     
     }
 
-    protected function myPostList()
+    protected function postList()
     {
        
         return SaleHouse::create([
