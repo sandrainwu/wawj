@@ -37,8 +37,19 @@ class UserController extends Controller
 	{
 
         $this->validator($request->all())->validate();
-        $this->createSaleHouse($request->all());
-        return view('user.salehousesavedsuccess');
+        
+        if ( null !== $request->input('post_id')){
+
+            $this->createSaleHouse($request->all());
+        }
+
+        elseif  ( null !== $request->input('user_id')){
+        
+            $this->editSaleHouse($request->all());
+        
+        }
+
+            return view('user.salehousesavedsuccess');
 
     }
 
@@ -56,6 +67,7 @@ class UserController extends Controller
             'user_id' => 'required|integer',
             'house_type' => 'required',
             'area' => 'required',
+            'price' => 'required',
             'certificate_number' => 'required',
             'feature' => 'required',
             ],$message
@@ -71,27 +83,46 @@ class UserController extends Controller
                 'community' => $data['community'],
                 'house_type' => $data['house_type'],
                 'area' => $data['area'],
+                'price' => $data['price'],
                 'certificate_number' => $data['certificate_number'],
                 'feature' => $data['feature'],
             ]);
     
     }
+    
+    protected function editSaleHouse(array $data)
+    {
+        $mypost = SaleHouse::find($data['post_id']);
+        $mypost->user_id = $data['user_id'];
+        $mypost->community = $data['community'];
+        $mypost->house_type = $data['house_type'];
+        $mypost->area = $data['area'];
+        $mypost->price = $data['price'];
+        $mypost->certificate_number = $data['certificate_number'];
+        $mypost->feature = $data['feature'];
+        return $mypost->save();
+    
+    }
 
     protected function postList($id)
     {
-        $list = SaleHouse::where('user_id','=',$id)->get();
+        $count = SaleHouse::where('user_id', $id)->count();
+        $list = SaleHouse::where('user_id',$id)->get();
         return view('user.postlist',[
         'list' => $list,
+        'count' => $count,
     ]);
     }
 
+    protected function saleHouseEdit($id)
+    {
+        $list = SaleHouse::find($id);
+        return view('user.salehouse',[
+        'list' => $list,
+        'post_id' => $id,
+    ]);
 
-
-
-
-
-
-
+    }
 
 
 }

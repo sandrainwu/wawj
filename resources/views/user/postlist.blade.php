@@ -9,28 +9,24 @@
 @CSRF
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card card-default">
-                <div class="card-header">我要卖房</div>
+                <div class="card-header">我的发布 (<span class="text-warning">{{ $count }}</span>)</div>
 
 
 
                 <div class="card-body justify-content-center text-center">
                    
                     <div class="row justify-content-center">
-                        <div class="input-group col-md-8">
+                         @foreach($list as $t)
+                            <div class="input-group col-md-12">
+                                <div class="row col-md-3"><a href="{{ route('saleHouseEdit', ['id' => $t->id]) }}"> {{ $t->community }}</a></div>
+                                <div class="row col-md-3">{{ $t->area }}平米</div>
+                                <div class="row col-md-3">{{ $t->price }}万元</div>
+                                <div class="row col-md-3">于{{ $t->created_at }}</div>
+                            </div>
+                        @endforeach
                             
-                            @foreach($list as $t)
-                                 <div>{{ $t->community }}</div>
-                                 <div>{{ $t->house_type }}</div>
-                                 <div>{{ $t->area }}</div>
-                                 <div>{{ $t->certificate_number }}</div>
-                                 <div>{{ $t->feature }}</div>
-                                 <div>{{ $t->created_at }}</div>
-                            @endforeach
-                            
-                        </div>
-
                     </div>
 
                     <div class="form-group row">

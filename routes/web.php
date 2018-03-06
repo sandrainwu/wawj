@@ -27,5 +27,6 @@ Route::prefix('user')->group(function () {
     Route::get('buyHouse', 'UserController@buyHouse')->name('buyHouse');
     Route::get('saleHouse', 'UserController@saleHouse')->name('saleHouse');
 	Route::get('postList/{id}', 'UserController@postList')->where('id', '[0-9]+')->name('postList');
+	Route::get('saleHouseEdit/{id}', 'UserController@saleHouseEdit')->where('id', '[0-9]+')->name('saleHouseEdit');
 	Route::post('saleHouseSave', 'UserController@saleHouseSave')->name('saleHouseSave');
 });
