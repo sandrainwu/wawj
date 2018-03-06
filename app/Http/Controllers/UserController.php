@@ -77,18 +77,12 @@ class UserController extends Controller
     
     }
 
-    protected function postList()
+    protected function postList($id)
     {
-       
-        return SaleHouse::create([
-                'user_id' => $data['user_id'],
-                'community' => $data['community'],
-                'house_type' => $data['house_type'],
-                'area' => $data['area'],
-                'certificate_number' => $data['certificate_number'],
-                'feature' => $data['feature'],
-            ]);
-    
+        $list = SaleHouse::where('user_id','=',$id)->get();
+        return view('user.postlist',[
+        'list' => $list,
+    ]);
     }
 
 
