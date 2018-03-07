@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\SaleHouse;
+use App\Model\Message;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,23 +33,23 @@ class UserController extends Controller
 
     }
 
-	public function saleHouseSave(Request $request)
+	public function messageSave(Request $request)
 	{
 
         $this->validator($request->all())->validate();
         
-        if ( null !== $request->input('post_id')){
+        if ( $request->filled('post_id')){
 
-            $this->createSaleHouse($request->all());
+            $this->editMessage($request->all());
         }
 
-        elseif  ( null !== $request->input('user_id')){
-        
-            $this->editSaleHouse($request->all());
+        elseif  ( $request->filled('user_id')){
+            
+            $this->createMessage($request->all());
         
         }
-
-            return view('user.salehousesavedsuccess');
+        
+        return view('user.messagesavesuccess');
 
     }
 
@@ -75,11 +75,12 @@ class UserController extends Controller
     }
 
 
-	protected function createSaleHouse(array $data)
+	protected function createMessage(array $data)
     {
        
-        return SaleHouse::create([
+        return Message::create([
                 'user_id' => $data['user_id'],
+                'transaction' => $data['transaction'],
                 'community' => $data['community'],
                 'house_type' => $data['house_type'],
                 'area' => $data['area'],
@@ -90,9 +91,9 @@ class UserController extends Controller
     
     }
     
-    protected function editSaleHouse(array $data)
+    protected function editMessage(array $data)
     {
-        $mypost = SaleHouse::find($data['post_id']);
+        $mypost = Message::find($data['post_id']);
         $mypost->user_id = $data['user_id'];
         $mypost->community = $data['community'];
         $mypost->house_type = $data['house_type'];
@@ -106,8 +107,8 @@ class UserController extends Controller
 
     protected function postList($id)
     {
-        $count = SaleHouse::where('user_id', $id)->count();
-        $list = SaleHouse::where('user_id',$id)->get();
+        $count = Message::where('user_id', $id)->count();
+        $list = Message::where('user_id',$id)->orderBy('created_at','desc')->get();
         return view('user.postlist',[
         'list' => $list,
         'count' => $count,
@@ -116,7 +117,7 @@ class UserController extends Controller
 
     protected function saleHouseEdit($id)
     {
-        $list = SaleHouse::find($id);
+        $list = Message::find($id);
         return view('user.salehouse',[
         'list' => $list,
         'post_id' => $id,

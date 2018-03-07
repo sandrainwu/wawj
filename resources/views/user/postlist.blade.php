@@ -4,7 +4,7 @@
 <script src="{{ asset('js/getcity.js') }}"></script>
 
 
-<form action="{{ route('saleHouseSave') }}" method="post">
+<form action="{{ route('messageSave') }}" method="post">
 <input type="hidden" name="user_id" value="{{  Auth::id() }}">
 @CSRF
 <div class="container">
@@ -20,7 +20,14 @@
                     <div class="row justify-content-center">
                          @foreach($list as $t)
                             <div class="input-group col-md-12">
-                                <div class="row col-md-3"><a href="{{ route('saleHouseEdit', ['id' => $t->id]) }}"> {{ $t->community }}</a></div>
+                                <div class="row col-md-3"><a href="
+                                    @if ($t->transaction == 'buy')
+                                        {{ route('saleHouseEdit', ['id' => $t->id]) }}
+                                    @elseif ($t->transaction == 'sale')
+                                        {{ route('buyHouseEdit', ['id' => $t->id]) }}
+                                    @endif
+
+                                    "> {{ $t->community }}</a></div>
                                 <div class="row col-md-3">{{ $t->area }}平米</div>
                                 <div class="row col-md-3">{{ $t->price }}万元</div>
                                 <div class="row col-md-3">于{{ $t->created_at }}</div>

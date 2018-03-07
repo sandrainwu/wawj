@@ -67,7 +67,24 @@
         <main class="py-4">
             @yield('content')
         </main>
+    
+        <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <div class="container">
+                <table width="100%">
+                    <tr align="center">
+                        <td><a href="{{ route('userhome') }}" class="btn btn-primary">Home</a></td>
+                        <td><a href="{{ route('userhome') }}" class="btn btn-primary">消息</a></td>
+                        <td><a href="{{ route('userhome') }}" class="btn btn-primary">关注</a></td>
+                        <td><a href="{{ route('userhome') }}" class="btn btn-primary">我的</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
     </div>
+
+
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

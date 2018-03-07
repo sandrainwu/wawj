@@ -2,8 +2,8 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: 2018-03-06 08:35:45
+-- Host: localhost
+-- Generation Time: 2018-03-07 08:49:14
 -- 服务器版本： 5.7.21-log
 -- PHP Version: 7.1.9
 
@@ -117,6 +117,47 @@ INSERT INTO `agent` (`id`, `account_phone`, `real_name`, `sex`, `email`, `id_num
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL COMMENT '发布信息的用户ID',
+  `transaction` set('buy','sale','query','consult') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'buy' COMMENT '发布类型，买、卖、查询、咨询',
+  `community` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '住宅小区名称',
+  `house_type` enum('别墅','排屋','普通住宅','公寓','商住楼','写字楼','商铺','工业物业','不限') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '普通住宅' COMMENT '物业类型',
+  `area` float NOT NULL COMMENT '建筑面积',
+  `certificate_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '房产证编号',
+  `feature` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '房产特点',
+  `price` float NOT NULL COMMENT '价格',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `transaction` (`transaction`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 转存表中的数据 `message`
+--
+
+INSERT INTO `message` (`id`, `user_id`, `transaction`, `community`, `house_type`, `area`, `certificate_number`, `feature`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 'sale', 'xiaoqu', '普通住宅', 1111, '11111', '11111', 0, '2018-03-04 06:16:31', '2018-03-07 08:31:47'),
+(2, 1, 'sale', '1111', '普通住宅', 1111, '11111', '11111', 0, '2018-03-04 06:19:32', '2018-03-07 08:31:56'),
+(3, 1, 'sale', '1111', '普通住宅', 1111, '11111', '11111', 0, '2018-03-04 06:23:14', '2018-03-07 08:32:02'),
+(4, 1, 'buy', '1111', '普通住宅', 1111, '11111', '11111', 0, '2018-03-04 06:23:48', '2018-03-07 08:32:20'),
+(5, 1, 'buy', '1111', '普通住宅', 1111, '11111', '11111', 0, '2018-03-04 06:24:30', '2018-03-07 08:32:08'),
+(6, 1, 'sale', '1111', '普通住宅', 1111, '11111', '11111', 0, '2018-03-04 06:25:04', '2018-03-07 08:32:14'),
+(7, 1, 'sale', '1111', '普通住宅', 1111, '11111', '11111', 0, '2018-03-04 06:25:16', '2018-03-07 08:32:33'),
+(8, 1, 'sale', '嘉元小区2号', '别墅', 200.34, '23232222', '独栋别墅999999999', 300, '2018-03-06 19:12:14', '2018-03-07 08:32:28'),
+(9, 1, 'sale', '嘉元小区1号', '别墅', 200.34, '23232222', '独栋别墅', 300, '2018-03-06 19:13:28', '2018-03-07 08:32:39'),
+(10, 1, 'buy', 'zhiming', '排屋', 11111100, '11111111', '1111111111', 111111000, '2018-03-06 23:36:21', '2018-03-06 23:36:21'),
+(11, 1, 'sale', '嘉元小区1号', '普通住宅', 200.34, '23232222', '独栋别墅', 11111, '2018-03-07 00:17:21', '2018-03-07 00:17:21');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `password_resets`
 --
 
@@ -127,40 +168,6 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `salehouse`
---
-
-DROP TABLE IF EXISTS `salehouse`;
-CREATE TABLE IF NOT EXISTS `salehouse` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) NOT NULL COMMENT '发布信息的用户ID',
-  `community` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '住宅小区名称',
-  `house_type` enum('别墅','排屋','普通住宅','公寓','商住楼','写字楼','商铺','工业物业') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '普通住宅' COMMENT '物业类型',
-  `area` float NOT NULL COMMENT '建筑面积',
-  `certificate_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '房产证编号',
-  `feature` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '房产特点',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 转存表中的数据 `salehouse`
---
-
-INSERT INTO `salehouse` (`id`, `user_id`, `community`, `house_type`, `area`, `certificate_number`, `feature`, `created_at`, `updated_at`) VALUES
-(1, 1, '1111', '普通住宅', 1111, '11111', '11111', '2018-03-04 06:16:31', '2018-03-04 06:16:31'),
-(2, 1, '1111', '普通住宅', 1111, '11111', '11111', '2018-03-04 06:19:32', '2018-03-04 06:19:32'),
-(3, 1, '1111', '普通住宅', 1111, '11111', '11111', '2018-03-04 06:23:14', '2018-03-04 06:23:14'),
-(4, 1, '1111', '普通住宅', 1111, '11111', '11111', '2018-03-04 06:23:48', '2018-03-04 06:23:48'),
-(5, 1, '1111', '普通住宅', 1111, '11111', '11111', '2018-03-04 06:24:30', '2018-03-04 06:24:30'),
-(6, 1, '1111', '普通住宅', 1111, '11111', '11111', '2018-03-04 06:25:04', '2018-03-04 06:25:04'),
-(7, 1, '1111', '普通住宅', 1111, '11111', '11111', '2018-03-04 06:25:16', '2018-03-04 06:25:16');
 
 -- --------------------------------------------------------
 
@@ -194,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `account_phone`, `real_name`, `sex`, `email`, `id_number`, `id_picture`, `password`, `remember_token`, `active`, `created_at`, `updated_at`) VALUES
-(1, '13306816366', NULL, 'Secret', '', '', '', '$2y$10$SGkG7LiU/VUNoweu02I4Bu6eRhglj.OB3ctF1z5bzGFb5i5q657uC', 'fKi8LckfPzF8rqjq5BVk0mE2mjlInelGXUyAG0pgTTk2VUwy88Vo8EKrHYgl', 'Active', '2018-02-18 13:13:00', '2018-03-04 14:10:49'),
+(1, '13306816366', NULL, 'Secret', '', '', '', '$2y$10$SGkG7LiU/VUNoweu02I4Bu6eRhglj.OB3ctF1z5bzGFb5i5q657uC', '43dyKhNSBoWI2KWSxCJna7LHLFo5qSUQbtNyaC0yqDEBTQiV7sBhGLCRijEl', 'Active', '2018-02-18 13:13:00', '2018-03-07 07:12:13'),
 (2, '13306816367', NULL, 'Secret', NULL, NULL, NULL, '$2y$10$vMNxe4MPgs8sbvZ.M2ycP.VpK.PHTG8UGGyfrkH3kmt0KiGmAcJ2q', NULL, 'Active', '2018-02-22 18:26:52', '2018-02-22 18:26:52'),
 (3, '13306816368', NULL, 'Secret', NULL, NULL, NULL, '$2y$10$lkoANoRezsjUw/RIHnqVHOcSF4yEaAvIX4zuO4r/jb/IuvVEGQX6O', 'ISjbdSHQ16HBrtkxU5KqwUlQge1mhMf2AaIUFqBEi4hVcGFhEVgrIJNQ9dmJ', 'Active', '2018-02-22 18:32:35', '2018-02-23 02:47:47');
 COMMIT;

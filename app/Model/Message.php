@@ -4,18 +4,18 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class salehouse extends Model
+class message extends Model
 {
     //
 
-	public $table="salehouse";
+	public $table="message";
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'user_id', 'community','house_type', 'area', 'certificate_number', 'feature',
+        'user_id', 'transaction', 'community','house_type', 'area', 'price', 'certificate_number', 'feature',
     ];
 
     /**
