@@ -11,7 +11,7 @@
                     
                         <div class="form-group row justify-content-center">
                             <div class="input-group col-md-8">
-                                <label>卖房信息发布成功！</label>
+                                <label>信息发布成功！</label>
                             </div>
                         </div>
 

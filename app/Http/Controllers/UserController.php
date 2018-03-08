@@ -121,7 +121,17 @@ class UserController extends Controller
         return view('user.salehouse',[
         'list' => $list,
         'post_id' => $id,
-    ]);
+        ]);
+
+    }
+    
+    protected function buyHouseEdit($id)
+    {
+        $list = Message::find($id);
+        return view('user.buyhouse',[
+        'list' => $list,
+        'post_id' => $id,
+        ]);
 
     }
 

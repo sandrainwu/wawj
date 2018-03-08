@@ -28,9 +28,8 @@
                                     @endif
 
                                     "> {{ $t->community }}</a></div>
-                                <div class="row col-md-3">{{ $t->area }}平米</div>
                                 <div class="row col-md-3">{{ $t->price }}万元</div>
-                                <div class="row col-md-3">于{{ $t->created_at }}</div>
+                                <div class="row col-md-3">{{ $t->transaction }}</div>
                             </div>
                         @endforeach
                             
