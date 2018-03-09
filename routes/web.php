@@ -11,7 +11,7 @@
 |
 */
 
-Route::view('/', 'auth.login')->name('/');
+Route::view('/', 'index')->name('/');
 
 Auth::routes();
 
