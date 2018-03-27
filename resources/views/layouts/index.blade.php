@@ -12,13 +12,15 @@
 <body>
 <!-- 顶部导航 -->
     <header class="mui-bar mui-bar-nav mui-bar-nav-bg">
-
-        <a id="icon-menu" class="mui-action-back mui-icon mui-pull-left" href="{{ route('/') }}"><img src="img/icon1.gif" style="vertical-align:middle"> AWJ</a>
-        <div class = "mui-content">
-            <a href="#popover" id="openPopover" class="mui-icon mui-icon-bars mui-pull-right"></a>
-        </div>
+        <table class="mui-table">
+            <tr>
+                <td width="50%" align="left" height="45" style="vertical-align:middle"><a href="{{ route('/') }}"><img src="img/icon1.gif" style="vertical-align:middle;"> AWJ</a></td>
+                <td width="50%" align="right" valign="middle"><a href="#policy">我们</a> | <a href="#about">关于</a></td>
+                <td></td>
+            </tr>
+        </table>
         
-    </header>
+     </header>
 <!-- 顶部导航 -->
 
 <!-- 底部固定栏 -->
@@ -27,31 +29,16 @@
        <h5>Support <a href="mailto:admin@wawj.com">admin@wawj.com</a></h5>
     </nav>
 <!-- 底部固定栏 -->
+<div class = "mui-content">
 
-
-
-
-
-<!-- menu -->
-    <div class = "mui-content">
-        <div id="popover" class="mui-popover">
-            <ul class="mui-table-view">
-               <li class="mui-table-view-cell"><a href="#aboutus">关于我们</a></li>
-               <li class="mui-table-view-cell"><a href="#policy">收费政策</a></li>
-               <li class="mui-table-view-cell"><a href="#aboutsite">关于网站</a></li>
-            </ul>
-        </div>
-    </div>
-<!-- menu -->
 
     <main class="py-4">
         @yield('content')
     </main>
     
-<div class = "mui-content">
-    <div id="aboutus">关于我们</div>
-    <div id="policy">收费政策</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <div id="aboutsite">关于网站</div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div id="policy"><br><br><br>收费政策</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div id="about">关于网站</div>
 </div>
 
 
