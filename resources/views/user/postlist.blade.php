@@ -1,56 +1,50 @@
-@extends('layouts.userhome')
+@extends('layouts.userhometoponly')
+
+@section('title')
+我发布的信息 <span class="mui-badge mui-badge-success">{{ $count }}</span>
+@endsection
+
 
 @section('content')
-<script src="{{ asset('js/getcity.js') }}"></script>
+
+<br>
+<div class="mui-content">
+    
+
+    <script src="{{ asset('js/getcity.js') }}"></script>
+    <form action="{{ route('messageSave') }}" method="post">
+    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+    @CSRF
 
 
-<form action="{{ route('messageSave') }}" method="post">
-<input type="hidden" name="user_id" value="{{  Auth::id() }}">
-@CSRF
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card card-default">
-                <div class="card-header">我的发布 (<span class="text-warning">{{ $count }}</span>)</div>
-
-
-
-                <div class="card-body justify-content-center text-center">
-                   
-                    <div class="row justify-content-center">
-                         @foreach($list as $t)
-                            <div class="input-group col-md-12">
-                                <div class="row col-md-3"><a href="
-                                    @if ($t->transaction == 'buy')
-                                        {{ route('saleHouseEdit', ['id' => $t->id]) }}
-                                    @elseif ($t->transaction == 'sale')
-                                        {{ route('buyHouseEdit', ['id' => $t->id]) }}
-                                    @endif
-
-                                    "> {{ $t->community }}</a></div>
-                                <div class="row col-md-3">{{ $t->price }}万元</div>
-                                <div class="row col-md-3">{{ $t->transaction }}</div>
-                            </div>
-                        @endforeach
-                            
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary">提交</button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="reset" class="btn btn-primary">重写</button>
-                        </div>
-                         
-                    </div>
-
-
-                </div>
-            </div>
+    <div class="mui-row" style="padding-left: 5px;padding-right: 5px">
+        <table width="100%">
+        @foreach($list as $t)
+            <tr>
+            @if ($t->transaction == 'buy')
+                <td align="right"><a href="{{ route('buyHouseEdit', ['id' => $t->id]) }}" style="color: #3982ba">{{ $t->community }}</a></td>
+                <td align="right">{{ $t->price }}</td><td style="padding-left: 5px"><h6>万元</h6></td>
+                <td align="center"><span class="mui-badge mui-badge-primary">买</span></td>
+            @elseif ($t->transaction == 'sale')
+                <td align="right"><a href="{{ route('saleHouseEdit', ['id' => $t->id]) }}" style="color: #3982ba">{{ $t->community }}</a></td>
+                <td align="right">{{ $t->price }}</td><td style="padding-left: 5px"><h6>万元</h6></td>
+                <td align="center"><span class="mui-badge mui-badge-danger">卖</span></td>
+            @endif
+            </tr>
+        @endforeach
+        </table>
+    </div>
+    <br>
+    <div class="mui-row">
+        <div class="mui-col-sm-1 mui-col-xs-1">
+        </div>
+        <div class="mui-col-sm-10 mui-col-xs-10">
+            <button type="submit" class="mui-btn mui-btn-primary" style="width:100%">保 存</button>
+        </div>
+        <div class="mui-col-sm-1 mui-col-xs-1">
         </div>
     </div>
+    
+    </form>
 </div>
-
-</form>
 @endsection

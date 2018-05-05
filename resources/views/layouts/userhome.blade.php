@@ -4,91 +4,113 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-
-    
+    <link href="{{ asset('css/mui.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<!-- 顶部导航 -->
+    <header class="mui-bar-nav-bg mui-bar mui-bar-nav" style="background-color: #3982ba">
+        <table class="mui-table" style="color: #ffffff">
+            <tr>
+                <td width="30%" align="left" height="45" style="vertical-align:middle">
+                @if (Route::currentRouteName()=="userhome")
+                    <a href="{{ route('/') }}"><img src="img/icon2.png" style="vertical-align:middle;"></a>
+                @else
+                    <a href="{{ URL::previous() }}"><span class="mui-icon mui-icon-back"></span></a>
+                @endif
+                </td>
+                <td width="40%" align="center">
+                    @yield('title')
+                </td>
+                <td width="30%" align="right" valign="middle">{{ Auth::guard('user')->user()->real_name }} | <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出</a></td>
+                <td></td>
+            </tr>
+        </table>
+        
+     </header>
+<!-- 顶部导航 -->
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+    </form>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
 
-                    </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">登录</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">注册</a></li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::guard('user')->user()->account_phone }} <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                            <li><a class="nav-link" href="#policy">费用</a></li>
-                            <li><a class="nav-link" href="#about">关于</a></li>
-           
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
     
-        <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-            <div class="container">
-                <table width="100%">
-                    <tr align="center">
-                        <td><a href="{{ route('userhome') }}" class="btn btn-primary">Home</a></td>
-                        <td><a href="{{ route('userhome') }}" class="btn btn-primary">消息</a></td>
-                        <td><a href="{{ route('userhome') }}" class="btn btn-primary">关注</a></td>
-                        <td><a href="{{ route('userhome') }}" class="btn btn-primary">我的</a></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
+<!--登录后主体页面  -->
+<div class="mui-content">
+    <div id="tabbar1" class="mui-control-content mui-active">
+         <ul class="mui-table-view mui-grid-view mui-grid-9">
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="{{ route('buyHouse') }}">
+                    <span class="mui-icon mui-icon-home"></span>
+                    <div class="mui-media-body">买 房</div></a></li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="{{ route('saleHouse') }}">
+                    <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
+                    <div class="mui-media-body">卖 房</div></a></li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="{{ route('postList', ['id' => Auth::id()]) }}">
+                    <span class="mui-icon mui-icon-chatbubble"></span>
+                    <div class="mui-media-body">我发布的信息</div></a></li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+                    <span class="mui-icon mui-icon-location"></span>
+                    <div class="mui-media-body">浏览</div></a></li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+                    <span class="mui-icon mui-icon-search"></span>
+                    <div class="mui-media-body">Search</div></a></li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+                    <span class="mui-icon mui-icon-phone"></span>
+                    <div class="mui-media-body">Phone</div></a></li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+                    <span class="mui-icon mui-icon-gear"></span>
+                    <div class="mui-media-body">Setting</div></a></li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+                    <span class="mui-icon mui-icon-info"></span>
+                    <div class="mui-media-body">about</div></a></li>
+           <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+                    <span class="mui-icon mui-icon-more"></span>
+                    <div class="mui-media-body">more</div></a></li>
+        </ul> 
     </div>
 
+    <div id="tabbar2" class="mui-control-content">
+        22222222222222222222222222222
+    </div>
 
+    <div id="tabbar3" class="mui-control-content">
+        33333333333333333333333333333
+    </div>
 
+    <div id="tabbar4" class="mui-control-content">
+        44444444444444444444444444444
+    </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+</div>
+<!--登录后主体页面  -->
 
+<!-- 底部固定栏 -->
+
+    <nav class="mui-bar mui-bar-tab">
+            <a class="mui-tab-item mui-active" href="#tabbar1">
+                <span class="mui-icon mui-icon-home"></span>
+                <span class="mui-tab-label">首页</span>
+            </a>
+            <a class="mui-tab-item" href="#tabbar2">
+                <span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
+                <span class="mui-tab-label">消息</span>
+            </a>
+            <a class="mui-tab-item" href="#tabbar3">
+                <span class="mui-icon mui-icon-starhalf"></span>
+                <span class="mui-tab-label">关注</span>
+            </a>
+            <a class="mui-tab-item" href="#tabbar4">
+                <span class="mui-icon mui-icon-gear"></span>
+                <span class="mui-tab-label">设置</span>
+            </a>
+        </nav>
+
+<!-- 底部固定栏 -->
+
+<!-- Scripts -->
+    <script src="{{ asset('js/mui.js') }}"></script>
 </body>
 </html>

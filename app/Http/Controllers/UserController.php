@@ -26,10 +26,17 @@ class UserController extends Controller
     }
 	
 
-	public function saleHouse()
-	{
+    public function saleHouse()
+    {
 
         return view('user.salehouse');
+
+    }
+
+    public function buyHouse()
+    {
+
+        return view('user.buyhouse');
 
     }
 
