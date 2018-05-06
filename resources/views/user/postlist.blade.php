@@ -23,12 +23,20 @@
             <tr>
             @if ($t->transaction == 'buy')
                 <td align="right"><a href="{{ route('buyHouseEdit', ['id' => $t->id]) }}" style="color: #3982ba">{{ $t->community }}</a></td>
-                <td align="right">{{ $t->price }}</td><td style="padding-left: 5px"><h6>万元</h6></td>
-                <td align="center"><span class="mui-badge mui-badge-primary">买</span></td>
+                <td align="right">{{ $t->price/10000 }}</td><td style="padding-left: 5px"><h6>万元</h6></td>
+                <td align="center"><span class="mui-badge mui-badge-primary">买入</span></td>
             @elseif ($t->transaction == 'sale')
                 <td align="right"><a href="{{ route('saleHouseEdit', ['id' => $t->id]) }}" style="color: #3982ba">{{ $t->community }}</a></td>
-                <td align="right">{{ $t->price }}</td><td style="padding-left: 5px"><h6>万元</h6></td>
-                <td align="center"><span class="mui-badge mui-badge-danger">卖</span></td>
+                <td align="right">{{ $t->price/10000 }}</td><td style="padding-left: 5px"><h6>万元</h6></td>
+                <td align="center"><span class="mui-badge mui-badge-danger">卖出</span></td>
+            @elseif ($t->transaction == 'rent')
+                <td align="right"><a href="{{ route('rentHouseEdit', ['id' => $t->id]) }}" style="color: #3982ba">{{ $t->community }}</a></td>
+                <td align="right">{{ $t->price }}</td><td style="padding-left: 5px"><h6>元</h6></td>
+                <td align="center"><span class="mui-badge mui-badge-danger">租入</span></td>
+            @elseif ($t->transaction == 'let')
+                <td align="right"><a href="{{ route('letHouseEdit', ['id' => $t->id]) }}" style="color: #3982ba">{{ $t->community }}</a></td>
+                <td align="right">{{ $t->price }}</td><td style="padding-left: 5px"><h6>元</h6></td>
+                <td align="center"><span class="mui-badge mui-badge-danger">出租</span></td>
             @endif
             </tr>
         @endforeach

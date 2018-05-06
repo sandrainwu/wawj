@@ -40,6 +40,20 @@ class UserController extends Controller
 
     }
 
+    public function rentHouse()
+    {
+
+        return view('user.renthouse');
+
+    }
+
+    public function letHouse()
+    {
+
+        return view('user.lethouse');
+
+    }
+
 	public function messageSave(Request $request)
 	{
 
@@ -126,6 +140,25 @@ class UserController extends Controller
     {
         $list = Message::find($id);
         return view('user.salehouse',[
+        'list' => $list,
+        'post_id' => $id,
+        ]);
+
+    }
+   
+    protected function rentHouseEdit($id)
+    {
+        $list = Message::find($id);
+        return view('user.renthouse',[
+        'list' => $list,
+        'post_id' => $id,
+        ]);
+
+    }
+    protected function letHouseEdit($id)
+    {
+        $list = Message::find($id);
+        return view('user.lethouse',[
         'list' => $list,
         'post_id' => $id,
         ]);

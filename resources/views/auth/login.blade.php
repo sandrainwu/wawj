@@ -43,14 +43,23 @@
             <div class="mui-col-sm-1 mui-col-xs-1">
             </div>
             <div class="mui-col-sm-10 mui-col-xs-10">
-                <div class="mui-input-row mui-radio">
-                    <label>客户方</label>
-                    <input name="role" type="radio" value="user" checked tabindex="3">
-                </div>
-                <div class="mui-input-row mui-radio">
-                    <label>服务方</label>
-                    <input name="role" type="radio" value="agent" tabindex="4">
-                </div>
+                
+                <table width="100%">
+                    <tr><td width="50%" align="right">
+                            <div class="mui-input-row mui-radio">
+                                <label>客户</label>
+                                <input name="role" type="radio" value="user" checked tabindex="3">
+                            </div>
+                        </td>
+                        <td width="50%" align="right">
+                            <div class="mui-input-row mui-radio">
+                                <label>服务人员</label>
+                                <input name="role" type="radio" value="agent" tabindex="4">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
             </div>
             <div class="mui-col-sm-1 mui-col-xs-1">
             </div>
@@ -62,7 +71,7 @@
             </div>
             
             <div class="mui-col-sm-10 mui-col-xs-10">
-                <div class="mui-input-row mui-checkbox">
+                <div class="mui-input-row mui-checkbox mui-text-right">
                     <label>记住账户</label>
                     <input type="checkbox" name="remember"  {{ old('remember') ? 'checked' : '' }} tabindex="5">
                 </div>

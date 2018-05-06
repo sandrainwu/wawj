@@ -1,0 +1,13 @@
+编码规则
+
+1、数据表及字段名 	动词_名词	全小写		例：rent_house
+
+2、模板文件名 		动词名词	全小写 		例：postlist.balde.php
+
+3、类文件名 			驼峰格式 	首字母大写 	例： UserController.php
+
+4、方法名			驼峰格式 	首字母小写 	例： public function saleHouse()
+
+5、命名空间 			目录路径	首字母大写 	例：namespace App\Http\Controllers;
+
+6、路由名称 			驼峰格式	首字母小写 	例：route('letHouse')
