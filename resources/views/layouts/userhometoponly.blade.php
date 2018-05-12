@@ -18,7 +18,7 @@
                 @if (Route::currentRouteName()=="userhome")
                     <a href="{{ route('/') }}"><img src="img/icon2.png" style="vertical-align:middle;"></a>
                 @else
-                    <a href="{{ URL::previous() }}"><span class="mui-icon mui-icon-back"></span></a>
+                    <a href="{{ route('userhome') }}"><span class="mui-icon mui-icon-back"></span></a>
                 @endif
                 </td>
                 <td width="40%" align="center">
