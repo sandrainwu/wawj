@@ -22,6 +22,7 @@
         <table width="100%">
         @foreach($list as $t)
             <tr>
+                <td><div class="mui-checkbox mui-left"><label></label><input name="delete" value="{{ $t->id}}" type="checkbox" ></div></td>
             @if ($t->transaction == 'buy')
                 <td align="right"><a href="{{ route('buyHouseEdit', ['id' => $t->id]) }}" style="color: #3982ba;">{{ $t->community }}</a></td>
                 <td align="right">{{ $t->price/10000 }}</td><td style="padding-left: 5px"><h6>万元</h6></td>
@@ -48,7 +49,7 @@
         <div class="mui-col-sm-1 mui-col-xs-1">
         </div>
         <div class="mui-col-sm-10 mui-col-xs-10">
-            <button type="submit" class="mui-btn mui-btn-primary" style="width:100%">保 存</button>
+            <button id="confirmdel" type="submit" class="mui-btn mui-btn-primary" style="width:100%">删 除</button>
         </div>
         <div class="mui-col-sm-1 mui-col-xs-1">
         </div>
@@ -56,6 +57,28 @@
     
     </form>
 </div>
+
+<!-- 底部工具 -->
+    <nav class="mui-bar mui-bar-tab">
+        <div class="mui-row">    
+            <div class="mui-col-sm-6 mui-col-xs-6" style="padding-right: 1px">
+                <button type="button">Block button</button>
+            </div>
+            <div class="mui-col-sm-6 mui-col-xs-6">
+                <button type="button">Block button</button>
+            </div>
+        </div>
+    </nav>
+<!-- 底部工具 -->
+
+
+
+
+
+
+
+
+
 
 @endsection
 
