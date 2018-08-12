@@ -1,12 +1,9 @@
-@extends('layouts.baseframe')
+<?php $__env->startSection('top_title'); ?>
+<a class="navbar-brand" href="<?php echo e(route('/')); ?>"><img alt="Brand" src="<?php echo e(asset('img/wawj.svg')); ?>" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a>
+<?php $__env->stopSection(); ?>
 
 
-@section('top_title')
-<a class="navbar-brand" href="{{ route('/') }}"><img alt="Brand" src="{{ asset('img/wawj.svg') }}" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a>
-@endsection
-
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <style type="text/css">
 .myul {
@@ -33,12 +30,12 @@ color:#eb4e3d;
   	<!-- 第1个tab -->
 	<div class="tab-pane show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
     	<ul class="myul">
-		    <li><a href="{{ route('buyHouse') }}"><i class="fa fa-credit-card fa-2x"></i><div>我要买房</div></a></li>
-		    <li><a href="{{ route('saleHouse') }}"><i class="fa fa-legal fa-2x"></i><div>我要卖房</div></a></li>
-		    <li><a href="{{ route('postList', ['id' => Auth::id()]) }}"><i class="fa fa-file-text-o fa-2x"></i><div>我的发布</div></a></li>
-		    <li><a href="{{ route('rentHouse') }}"><i class="fa fa-bed fa-2x"></i><div>我要租房</div></a></li>
-	  	    <li><a href="{{ route('letHouse') }}"><i class="fa fa-institution fa-2x"></i><div>我要出租</div></a></li>
-		    <li><a href="{{ route('employAgent') }}"><i class="fa fa-black-tie fa-2x"></i><div>聘请代理</div></a></li>
+		    <li><a href="<?php echo e(route('buyHouse')); ?>"><i class="fa fa-credit-card fa-2x"></i><div>我要买房</div></a></li>
+		    <li><a href="<?php echo e(route('saleHouse')); ?>"><i class="fa fa-legal fa-2x"></i><div>我要卖房</div></a></li>
+		    <li><a href="<?php echo e(route('postList', ['id' => Auth::id()])); ?>"><i class="fa fa-file-text-o fa-2x"></i><div>我的发布</div></a></li>
+		    <li><a href="<?php echo e(route('rentHouse')); ?>"><i class="fa fa-bed fa-2x"></i><div>我要租房</div></a></li>
+	  	    <li><a href="<?php echo e(route('letHouse')); ?>"><i class="fa fa-institution fa-2x"></i><div>我要出租</div></a></li>
+		    <li><a href="<?php echo e(route('employAgent')); ?>"><i class="fa fa-black-tie fa-2x"></i><div>聘请代理</div></a></li>
 		    <li><a href="#"><i class="fa fa-heart fa-2x"></i><div>setting</div></a></li>
 		    <li><a href="#"><i class="fa fa-user-circle fa-2x"></i><div>about</div></a></li>
 	  	</ul>
@@ -56,9 +53,9 @@ color:#eb4e3d;
 	<div class="tab-pane" id="pills-contacts" role="tabpanel" aria-labelledby="pills-contacts-tab">ssssss</div>
 </div>
 <!-- 中间显示栏 -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('bottom')
+<?php $__env->startSection('bottom'); ?>
 <!-- 底部固定栏 -->
     <style type="text/css">
     a {color: #a2a2a2;}
@@ -75,8 +72,10 @@ color:#eb4e3d;
       </ul>
     </nav>
 <!-- 底部固定栏 -->
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
 
+
+<?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

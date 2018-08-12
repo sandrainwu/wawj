@@ -1,11 +1,9 @@
-@extends('layouts.baseframe')
-
-@section('top_title')
-<a class="navbar-brand" href="{{ route('/') }}"><img alt="Brand" src="{{ asset('img/wawj.svg') }}" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a>
-@endsection
+<?php $__env->startSection('top_title'); ?>
+<a class="navbar-brand" href="<?php echo e(route('/')); ?>"><img alt="Brand" src="<?php echo e(asset('img/wawj.svg')); ?>" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a>
+<?php $__env->stopSection(); ?>
 
 
-@section('right_title')
+<?php $__env->startSection('right_title'); ?>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,10 +20,10 @@
           </li>
         </ul>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- 中间内容 -->
 <br>
 <div class="container">
@@ -40,13 +38,13 @@
             
             <div class="row form-group">
                 <div class="col-md-12">
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-block">登 录</a>
+                    <a href="<?php echo e(route('login')); ?>" class="btn btn-primary btn-block">登 录</a>
                 </div>
             </div>
 
             <div class="row form-group">
                 <div class="col-md-12">
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-block">游 客</a>
+                    <a href="<?php echo e(route('login')); ?>" class="btn btn-primary btn-block">游 客</a>
                 </div>
             </div>
         </div>
@@ -68,6 +66,7 @@
     </div>
 </div>
 <!-- 首页内容-->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@include('layouts.baseframebrandbottom')
+<?php echo $__env->make('layouts.baseframebrandbottom', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

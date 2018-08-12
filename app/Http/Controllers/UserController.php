@@ -7,6 +7,7 @@ use App\Model\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -35,7 +36,6 @@ class UserController extends Controller
 
     public function buyHouse()
     {
-
         return view('user.buyhouse');
 
     }
@@ -51,6 +51,13 @@ class UserController extends Controller
     {
 
         return view('user.lethouse');
+
+    }
+
+    public function employAgent()
+    {
+
+        return view('user.employagent');
 
     }
 
@@ -123,8 +130,21 @@ class UserController extends Controller
         $mypost->certificate_number = $data['certificate_number'];
         $mypost->feature = $data['feature'];
         return $mypost->save();
-    
+
     }
+
+    protected function postListDelete(Request $request,$id)
+    {
+        if ( $request->filled('tobedeleted')){
+            foreach ($request->tobedeleted as $b=>$c){
+                $vv="delete from message where id=$c and user_id=$id";
+                $deleted = DB::delete($vv);
+            }
+        }
+        //return $this->postList($id);
+        return "ok";
+    }
+
 
     protected function postList($id)
     {
@@ -142,6 +162,7 @@ class UserController extends Controller
         return view('user.salehouse',[
         'list' => $list,
         'post_id' => $id,
+        'backto' =>$this->backto($_SERVER['HTTP_REFERER']),
         ]);
 
     }
@@ -152,6 +173,7 @@ class UserController extends Controller
         return view('user.renthouse',[
         'list' => $list,
         'post_id' => $id,
+        'backto' =>$this->backto($_SERVER['HTTP_REFERER']),
         ]);
 
     }
@@ -161,16 +183,29 @@ class UserController extends Controller
         return view('user.lethouse',[
         'list' => $list,
         'post_id' => $id,
+        'backto' =>$this->backto($_SERVER['HTTP_REFERER']),
         ]);
 
     }
     
+
+    private function backto($refer)
+    {
+        $backto=route('userHome');
+        if(strpos($refer, 'postList')){
+            $backto=$refer;
+        }
+        return($backto);
+
+    }
+
     protected function buyHouseEdit($id)
     {
         $list = Message::find($id);
         return view('user.buyhouse',[
         'list' => $list,
         'post_id' => $id,
+        'backto' =>$this->backto($_SERVER['HTTP_REFERER']),
         ]);
 
     }

@@ -1,31 +1,30 @@
-@extends('layouts.baseframe')
+<?php $__env->startSection('top_title'); ?>
+<a class="navbar-brand" href="<?php echo e(route('/')); ?>"><img alt="Brand" src="<?php echo e(asset('img/wawj.svg')); ?>" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a><span class="text-white">登录</span>
+<?php $__env->stopSection(); ?>
 
-@section('top_title')
-<a class="navbar-brand" href="{{ route('/') }}"><img alt="Brand" src="{{ asset('img/wawj.svg') }}" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a><span class="text-white">登录</span>
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <br>
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-                        <form method="POST" action="{{ route('login') }}">
-                            {{ csrf_field() }}
+                        <form method="POST" action="<?php echo e(route('login')); ?>">
+                            <?php echo e(csrf_field()); ?>
+
                             <div class="row form-group">
                                 <div class="col-md-12 input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-user-o fa-fw"></i></div>
                                     </div>
-                                    <input type="tel" class="form-control" placeholder="手机号码" aria-label="请输入11位手机号" aria-describedby="btnGroupAddon" id="account_phone" class="form-control" name="account_phone" value="{{ old('account_phone') }}" required autofocus>
+                                    <input type="tel" class="form-control" placeholder="手机号码" aria-label="请输入11位手机号" aria-describedby="btnGroupAddon" id="account_phone" class="form-control" name="account_phone" value="<?php echo e(old('account_phone')); ?>" required autofocus>
                                 </div>
                             </div>
-                            @if ($errors->has('account_phone'))
+                            <?php if($errors->has('account_phone')): ?>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <span class="text-danger"><strong>{{ $errors->first('account_phone') }}</strong></span>
+                                    <span class="text-danger"><strong><?php echo e($errors->first('account_phone')); ?></strong></span>
                                 </div>
                             </div>
-                            @endif
+                            <?php endif; ?>
 
 
                             <div class="row form-group">
@@ -36,13 +35,13 @@
                                     <input placeholder="密码" type="password" aria-describedby="btnGroupAddon1" id="password" class="form-control" name="password" required>
                                 </div>
                             </div>
-                            @if ($errors->has('password'))
+                            <?php if($errors->has('password')): ?>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <span class="text-danger"><strong>{{ $errors->first('password') }}</strong></span>
+                                    <span class="text-danger"><strong><?php echo e($errors->first('password')); ?></strong></span>
                                 </div>
                             </div>
-                            @endif
+                            <?php endif; ?>
 
 
                             <div class="row form-group mb-3">
@@ -61,7 +60,7 @@
                             <div class="row form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <div class="custom-control custom-checkbox">
-                                        <input name="remember" type="checkbox" class="custom-control-input" id="customCheck1" {{ old('remember') ? 'checked' : '' }} checked="checked">
+                                        <input name="remember" type="checkbox" class="custom-control-input" id="customCheck1" <?php echo e(old('remember') ? 'checked' : ''); ?> checked="checked">
                                         <label class="custom-control-label" for="customCheck1">记住我</label>
                                     </div>
                                 </div>
@@ -76,13 +75,14 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12 text-center">
-                                   <a href="{{ route('register') }} " style="color: #3982ba">注册账户</a>&emsp;|&emsp;<a href="{{ route('password.request') }} " style="color: #3982ba">忘记密码</a>
+                                   <a href="<?php echo e(route('register')); ?> " style="color: #3982ba">注册账户</a>&emsp;|&emsp;<a href="<?php echo e(route('password.request')); ?> " style="color: #3982ba">忘记密码</a>
                                 </div>
                             </div>
                         </form>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@include('layouts.baseframebrandbottom')
+<?php echo $__env->make('layouts.baseframebrandbottom', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

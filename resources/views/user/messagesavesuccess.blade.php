@@ -1,4 +1,9 @@
-@extends('layouts.userhome')
+@extends('layouts.baseframe')
+
+@section('top_title')
+<a class="navbar-brand" href="{{ route('userHome') }}"><i class="fa fa-chevron-left"></i></a><span class="text-white">我要买房</span>
+@endsection
+
 
 @section('content')
 <div class="container">

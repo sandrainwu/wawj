@@ -1,16 +1,15 @@
-@extends('layouts.baseframe')
+<?php $__env->startSection('top_title'); ?>
+<a class="navbar-brand" href="<?php echo e(isset($backto) ? $backto : route('userHome')); ?>"><i class="fa fa-chevron-left"></i></a><span class="text-white">我要买房</span>
+<?php $__env->stopSection(); ?>
 
-@section('top_title')
-<a class="navbar-brand" href="{{ $backto or route('userHome') }}"><i class="fa fa-chevron-left"></i></a><span class="text-white">我要买房</span>
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <br>
-<form action="{{ route('messageSave') }}" method="post">
-    <input type="hidden" name="user_id" value="{{  Auth::id() }}">
+<form action="<?php echo e(route('messageSave')); ?>" method="post">
+    <input type="hidden" name="user_id" value="<?php echo e(Auth::id()); ?>">
     <input type="hidden" name="transaction" value="buy">
-        {!! isset($post_id) ? '<input type="hidden" name="post_id" value="'.$post_id.'">' : '' !!}
-        @CSRF
+        <?php echo isset($post_id) ? '<input type="hidden" name="post_id" value="'.$post_id.'">' : ''; ?>
+
+        <?php echo csrf_field(); ?>
 
 <div class="container">
     <div class="row">
@@ -21,7 +20,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">名称</span>
                     </div>
-                    <input placeholder="住宅小区名称" type="text" class="form-control{{ $errors->has('community') ? ' is-invalid' : '' }}" name="community" value="{{ $list->community or old('community') }}" required autofocus aria-describedby="basic-addon1">
+                    <input placeholder="住宅小区名称" type="text" class="form-control<?php echo e($errors->has('community') ? ' is-invalid' : ''); ?>" name="community" value="<?php echo e(isset($list->community) ? $list->community : old('community')); ?>" required autofocus aria-describedby="basic-addon1">
                 </div>
             </div>
             
@@ -32,45 +31,45 @@
                     </div>
                     <select name="house_type" aria-describedby="basic-addon2" class="custom-select"> 
                     <option value="别墅" 
-                    @if (isset($list->house_type)&& ($list->house_type == '别墅'))
+                    <?php if(isset($list->house_type)&& ($list->house_type == '别墅')): ?>
                         selected
-                    @endif 
+                    <?php endif; ?> 
                     >别墅</option>
                     <option value="排屋"
-                    @if (isset($list->house_type)&&($list->house_type == '排屋'))
+                    <?php if(isset($list->house_type)&&($list->house_type == '排屋')): ?>
                         selected
-                    @endif 
+                    <?php endif; ?> 
                     >排屋</option>
-                    <option value="普通住宅"@if ( !isset($list->house_type))
+                    <option value="普通住宅"<?php if( !isset($list->house_type)): ?>
                                                 selected
-                                            @elseif ($list->house_type=== '普通住宅')
+                                            <?php elseif($list->house_type=== '普通住宅'): ?>
                                                 selected
-                                            @endif
+                                            <?php endif; ?>
                     >普通住宅</option>
                     <option value="公寓"
-                    @if (isset($list->house_type)&&($list->house_type == '公寓'))
+                    <?php if(isset($list->house_type)&&($list->house_type == '公寓')): ?>
                         selected
-                    @endif 
+                    <?php endif; ?> 
                     >公寓</option>
                     <option value="商住楼"
-                    @if (isset($list->house_type)&&($list->house_type == '商住楼'))
+                    <?php if(isset($list->house_type)&&($list->house_type == '商住楼')): ?>
                         selected
-                    @endif 
+                    <?php endif; ?> 
                     >商住楼</option>
                     <option value="写字楼" 
-                    @if ( isset($list->house_type)&&($list->house_type == '写字楼'))
+                    <?php if( isset($list->house_type)&&($list->house_type == '写字楼')): ?>
                         selected
-                    @endif 
+                    <?php endif; ?> 
                     >写字楼</option>
                     <option value="商铺" 
-                    @if (isset($list->house_type)&&($list->house_type == '商铺'))
+                    <?php if(isset($list->house_type)&&($list->house_type == '商铺')): ?>
                         selected
-                    @endif 
+                    <?php endif; ?> 
                     >商铺</option>
                     <option value="工业物业" 
-                    @if (isset($list->house_type)&&($list->house_type == '工业物业'))
+                    <?php if(isset($list->house_type)&&($list->house_type == '工业物业')): ?>
                         selected
-                    @endif 
+                    <?php endif; ?> 
                     >工业物业</option>
                 </select>
                 </div>
@@ -81,7 +80,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3">面积</span>
                     </div>
-                    <input placeholder="建筑面积" type="number" class="form-control{{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ $list->area or old('area') }}" required aria-describedby="basic-addon3">
+                    <input placeholder="建筑面积" type="number" class="form-control<?php echo e($errors->has('area') ? ' is-invalid' : ''); ?>" name="area" value="<?php echo e(isset($list->area) ? $list->area : old('area')); ?>" required aria-describedby="basic-addon3">
                     <div class="input-group-append">
                         <span class="input-group-text pl-2" style="width:50px;">m<sup>2</sup></span>
                     </div>
@@ -93,7 +92,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon4">价格</span>
                     </div>
-                    <input placeholder="总价" type="number" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ $list->price or old('price') }}" required aria-describedby="basic-addon4">
+                    <input placeholder="总价" type="number" class="form-control<?php echo e($errors->has('price') ? ' is-invalid' : ''); ?>" name="price" value="<?php echo e(isset($list->price) ? $list->price : old('price')); ?>" required aria-describedby="basic-addon4">
                     <div class="input-group-append">
                         <span class="input-group-text pl-2" style="width:50px;">万元</span>
                     </div>
@@ -105,7 +104,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon5">证号</span>
                     </div>
-                    <input placeholder="房产证编号" type="text" class="form-control{{ $errors->has('certificate_number') ? ' is-invalid' : '' }}" name="certificate_number" value="{{ $list->certificate_number or old('certificate_number') }}" required aria-describedby="basic-addon5">
+                    <input placeholder="房产证编号" type="text" class="form-control<?php echo e($errors->has('certificate_number') ? ' is-invalid' : ''); ?>" name="certificate_number" value="<?php echo e(isset($list->certificate_number) ? $list->certificate_number : old('certificate_number')); ?>" required aria-describedby="basic-addon5">
                 </div>
             </div>
 
@@ -114,7 +113,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon6">特点</span>
                     </div>
-                    <input placeholder="房屋特点" type="text" class="form-control{{ $errors->has('feature') ? ' is-invalid' : '' }}" name="feature" value="{{ $list->feature or old('feature') }}" required aria-describedby="basic-addon6">
+                    <input placeholder="房屋特点" type="text" class="form-control<?php echo e($errors->has('feature') ? ' is-invalid' : ''); ?>" name="feature" value="<?php echo e(isset($list->feature) ? $list->feature : old('feature')); ?>" required aria-describedby="basic-addon6">
                 </div>
             </div>
 
@@ -132,4 +131,5 @@
 </nav>
 
 </form>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
