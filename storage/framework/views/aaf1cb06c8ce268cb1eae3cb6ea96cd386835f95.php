@@ -2,7 +2,6 @@
 <a class="navbar-brand" href="<?php echo e(route('/')); ?>"><img alt="Brand" src="<?php echo e(asset('img/wawj.svg')); ?>" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a>
 <?php $__env->stopSection(); ?>
 
-
 <?php $__env->startSection('content'); ?>
 
 <style type="text/css">
@@ -22,7 +21,6 @@ padding-top: 20px;
 .myul i{
 color:#eb4e3d;
 }
-
 </style>
 
 <!-- 中间显示栏 -->
@@ -30,14 +28,12 @@ color:#eb4e3d;
   	<!-- 第1个tab -->
 	<div class="tab-pane show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
     	<ul class="myul">
-		    <li><a href="<?php echo e(route('buyHouse')); ?>"><i class="fa fa-credit-card fa-2x"></i><div>我要买房</div></a></li>
-		    <li><a href="<?php echo e(route('saleHouse')); ?>"><i class="fa fa-legal fa-2x"></i><div>我要卖房</div></a></li>
-		    <li><a href="<?php echo e(route('postList', ['id' => Auth::id()])); ?>"><i class="fa fa-file-text-o fa-2x"></i><div>我的发布</div></a></li>
-		    <li><a href="<?php echo e(route('rentHouse')); ?>"><i class="fa fa-bed fa-2x"></i><div>我要租房</div></a></li>
-	  	    <li><a href="<?php echo e(route('letHouse')); ?>"><i class="fa fa-institution fa-2x"></i><div>我要出租</div></a></li>
-		    <li><a href="<?php echo e(route('employAgent')); ?>"><i class="fa fa-black-tie fa-2x"></i><div>聘请代理</div></a></li>
-		    <li><a href="#"><i class="fa fa-heart fa-2x"></i><div>setting</div></a></li>
-		    <li><a href="#"><i class="fa fa-user-circle fa-2x"></i><div>about</div></a></li>
+		    <li><a href="<?php echo e(route('userBuyHouse')); ?>"><i class="fa fa-credit-card fa-2x"></i><div>我要买房</div></a></li>
+		    <li><a href="<?php echo e(route('userSaleHouse')); ?>"><i class="fa fa-legal fa-2x"></i><div>我要卖房</div></a></li>
+		    <li><a href="<?php echo e(route('userPostList')); ?>"><i class="fa fa-file-text-o fa-2x"></i><div>我的发布</div></a></li>
+		    <li><a href="<?php echo e(route('userRentHouse')); ?>"><i class="fa fa-bed fa-2x"></i><div>我要租房</div></a></li>
+	  	    <li><a href="<?php echo e(route('userLetHouse')); ?>"><i class="fa fa-institution fa-2x"></i><div>我要出租</div></a></li>
+		    <li><a href="<?php echo e(route('userEmployAgent')); ?>"><i class="fa fa-black-tie fa-2x"></i><div>聘请代理</div></a></li>
 	  	</ul>
 	</div>
 	<!-- 第1个tab -->
@@ -48,9 +44,34 @@ color:#eb4e3d;
 	</div>
 	<!-- 第2个tab -->
 	
-
+	<!-- 第3个tab -->
 	<div class="tab-pane" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">jjjjjjj</div>
-	<div class="tab-pane" id="pills-contacts" role="tabpanel" aria-labelledby="pills-contacts-tab">ssssss</div>
+	<!-- 第3个tab -->
+	
+	<!-- 第4个tab -->
+	<div class="tab-pane" id="pills-contacts" role="tabpanel" aria-labelledby="pills-contacts-tab">
+		<br>
+		<div class="container">
+			<div class="row border-top">
+			    <div class="col my-2"><a href="#none" class="text-secondary">修改密码</a></div>
+			    <div class="col my-2 text-right"><a href="#none" class="text-secondary"><i class="fa fa-key fa-fw"></i> <i class="fa fa-chevron-right"></i></a></div>
+			</div>
+			<div class="row border-top text-secondary">
+			    <div class="col my-2"><a href="#none" class="text-secondary">身份认证</a></div>
+			    <div class="col my-2 text-right"><a href="#none" class="text-secondary"><i class="fa fa-id-card-o fa-fw"></i> <i class="fa fa-chevron-right"></i></a></div>
+			</div>
+			<div class="row border-top border-bottom">
+			    <div class="col my-2"><a href="#none" class="text-secondary">我的二维码</a></div>
+			    <div class="col my-2 text-right"><a href="#none" class="text-secondary"><i class="fa fa-qrcode fa-fw"></i> <i class="fa fa-chevron-right"></i></a></div>
+			</div>
+			<br>
+			<div class="row border-top border-bottom">
+			    <div class="w-100 my-2 text-center"><a href="<?php echo e(route('userLogout')); ?>" class="text-secondary">退出登录<i class="fa fa-lock fa-fw"></i></a></div>
+			</div>
+		</div>
+	</div>
+	<!-- 第4个tab -->
+	
 </div>
 <!-- 中间显示栏 -->
 <?php $__env->stopSection(); ?>
@@ -58,7 +79,7 @@ color:#eb4e3d;
 <?php $__env->startSection('bottom'); ?>
 <!-- 底部固定栏 -->
     <style type="text/css">
-    a {color: #a2a2a2;}
+    .nav-link {color: #a2a2a2;}
     .nav-pills .nav-link.active,.nav-pills .show > .nav-link{color: #3d85db;background-color: #f8f9fa;}
     .nav-link:hover{color: #a2a2a2;}
     </style>
@@ -73,9 +94,4 @@ color:#eb4e3d;
     </nav>
 <!-- 底部固定栏 -->
 <?php $__env->stopSection(); ?>
-
-
-
-
-
 <?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

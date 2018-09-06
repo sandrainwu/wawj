@@ -1,17 +1,16 @@
-@extends('layouts.baseframe')
+<?php $__env->startSection('top_title'); ?>
+<a class="navbar-brand" href="<?php echo e(isset($backto) ? $backto : route('userHome')); ?>"><i class="fa fa-chevron-left"></i></a><span class="text-white">我要聘请代理人</span>
+<?php $__env->stopSection(); ?>
 
-@section('top_title')
-<a class="navbar-brand" href="{{ $backto or route('userHome') }}"><i class="fa fa-chevron-left"></i></a><span class="text-white">我要聘请代理人</span>
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <br>
     <input type="hidden" name="transaction" value="rent">
     <input type="hidden" name="counter" value="" id="counter">
     <input type="hidden" name="bind_agent" value="" id="bind_agent">
     <input type="hidden" name="bind_transaction" value="" id="bind_transaction">
-    {!! isset($post_id) ? '<input type="hidden" name="post_id" value="'.$post_id.'">' : '' !!}
-    @CSRF
+    <?php echo isset($post_id) ? '<input type="hidden" name="post_id" value="'.$post_id.'">' : ''; ?>
+
+    <?php echo csrf_field(); ?>
 <div class="tab-content" id="pills-tabContent">
     <!-- 第1个tab -->
     
@@ -174,10 +173,10 @@
             var c=' <span class="badge badge-light">';
             var d='</span></button></td><td align="center"><button type="button" class="btn btn-secondary btn-sm" value="';
             var e='" id="choice_agent">选定</button></td></tr>';
-                $.get("{{ route('searchAgency') }}",{search:$('#searchinput').val()},function(result){
+                $.get("<?php echo e(route('searchAgency')); ?>",{search:$('#searchinput').val()},function(result){
                     var noreturn = true;
                     for(var i=0;i<result.length;i++){
-                        $("#search_agent_result").append(a+'group'+b+result[i]['agency_name']+'" value="{{ route('agencyInfo1') }}'+'/'+result[i]['id']+'">'+result[i]['agency_name']+c+result[i]['phone']+d+'agency-'+result[i]['id']+e);
+                        $("#search_agent_result").append(a+'group'+b+result[i]['agency_name']+'" value="<?php echo e(route('agencyInfo1')); ?>'+'/'+result[i]['id']+'">'+result[i]['agency_name']+c+result[i]['phone']+d+'agency-'+result[i]['id']+e);
                         noreturn = false;
                     }
                     if (noreturn)
@@ -185,10 +184,10 @@
                     if ($("#counter").val()=="AA")
                         $("#search_agent_result").html(no_result);
                 });
-                $.get("{{ route('searchAgent') }}",{search:$('#searchinput').val()},function(result){
+                $.get("<?php echo e(route('searchAgent')); ?>",{search:$('#searchinput').val()},function(result){
                     var noreturn = true;
                     for(var i=0;i<result.length;i++){
-                        $("#search_agent_result").append(a+'user'+b+result[i]['real_name']+'" value="{{ route('agentInfo1') }}'+'/'+result[i]['id']+'">'+result[i]['real_name']+c+result[i]['account_phone']+d+'agent-'+result[i]['id']+e);
+                        $("#search_agent_result").append(a+'user'+b+result[i]['real_name']+'" value="<?php echo e(route('agentInfo1')); ?>'+'/'+result[i]['id']+'">'+result[i]['real_name']+c+result[i]['account_phone']+d+'agent-'+result[i]['id']+e);
                         noreturn = false;
                     }
                     if (noreturn)
@@ -300,7 +299,7 @@
                 alert("请选择业务")
             }
             else {
-                $.get("{{ route('bindAgentTransaction') }}",{bind_agent:$('#bind_agent').val(),bind_transaction:$('#bind_transaction').val()},function(result){
+                $.get("<?php echo e(route('bindAgentTransaction')); ?>",{bind_agent:$('#bind_agent').val(),bind_transaction:$('#bind_transaction').val()},function(result){
                     if(result=='true'){
                         alert("业务代理申请已经发送给代理人，请耐心等待对方回复")
                     }
@@ -318,7 +317,7 @@
             $('#bind_transaction').val("");
             $("#search_info_result").html("");
 
-                $.get("{{ route('searchPost') }}",{search:$('#searchinput1').val()},function(result){
+                $.get("<?php echo e(route('searchPost')); ?>",{search:$('#searchinput1').val()},function(result){
                     var noreturn = true;
                     for(var i=0;i<result.length;i++){
                         var a='';
@@ -336,7 +335,7 @@
                                 a='<span class="badge badge-danger">求租</span>';
                                 break;
                             }
-                        $("#search_info_result").append('<tr><td>'+a+'</td><td><button type="button" class="btn btn-secondary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="'+result[i]['community']+'" value="{{ route('postInfo1') }}'+'/'+result[i]['id']+'">'+result[i]['community']+'</button></td><td align="center"><button type="button" class="btn btn-secondary btn-sm" value="|'+result[i]['id']+'|" id="choice_transaction">选定</button></td></tr>');
+                        $("#search_info_result").append('<tr><td>'+a+'</td><td><button type="button" class="btn btn-secondary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="'+result[i]['community']+'" value="<?php echo e(route('postInfo1')); ?>'+'/'+result[i]['id']+'">'+result[i]['community']+'</button></td><td align="center"><button type="button" class="btn btn-secondary btn-sm" value="|'+result[i]['id']+'|" id="choice_transaction">选定</button></td></tr>');
                         noreturn = false;
                     }
                     if (noreturn)
@@ -374,9 +373,9 @@
     });
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('bottom')
+<?php $__env->startSection('bottom'); ?>
 
 <!-- 底部固定栏 -->
     <nav class="navbar-toggle fixed-bottom">
@@ -387,4 +386,5 @@
       </ul>
     </nav>
 <!-- 底部固定栏 -->
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

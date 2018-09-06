@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-                        <form method="POST" action="<?php echo e(route('login')); ?>">
+                        <form id="login_form" method="POST" action="<?php echo e(route('login')); ?>">
                             <?php echo e(csrf_field()); ?>
 
                             <div class="row form-group">
@@ -15,7 +15,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-user-o fa-fw"></i></div>
                                     </div>
-                                    <input type="tel" class="form-control" placeholder="手机号码" aria-label="请输入11位手机号" aria-describedby="btnGroupAddon" id="account_phone" class="form-control" name="account_phone" value="<?php echo e(old('account_phone')); ?>" required autofocus>
+                                    <input type="tel" class="form-control" autocomplete="on" placeholder="手机号码" aria-label="请输入11位手机号" aria-describedby="btnGroupAddon" id="account_phone" class="form-control" name="account_phone" value="<?php echo e(isset($username) ? $username : old('account_phone')); ?>" required autofocus>
                                 </div>
                             </div>
                             <?php if($errors->has('account_phone')): ?>
@@ -32,7 +32,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text" id="btnGroupAddon1"><i class="fa fa-key fa-fw"></i></div>
                                     </div>
-                                    <input placeholder="密码" type="password" aria-describedby="btnGroupAddon1" id="password" class="form-control" name="password" required>
+                                    <input placeholder="密码" autocomplete="off" type="password" aria-describedby="btnGroupAddon1" id="password" class="form-control" name="password" value="<?php echo e(isset($password) ? $password : ''); ?>" required>
                                 </div>
                             </div>
                             <?php if($errors->has('password')): ?>
@@ -51,8 +51,21 @@
                                         <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-user-circle-o fa-fw"></i></div>
                                     </div>
                                     <select name="role" class="custom-select">
-                                        <option value="user" selected>我是客户</option>
-                                        <option value="agent">我是服务机构</option>
+                                        <option value="user" 
+                                        <?php if(isset($role)): ?>
+                                            <?php echo e($role=="user"?'selected':''); ?>
+
+                                        <?php else: ?>
+                                            <?php echo e(old('role')=='user'?'selected':''); ?> 
+                                        <?php endif; ?>
+                                        >我是客户</option><option value="agent"
+                                        <?php if(isset($role)): ?>
+                                            <?php echo e($role=="agent"?'selected':''); ?>
+
+                                        <?php else: ?>
+                                            <?php echo e(old('role')=='agent'?'selected':''); ?> 
+                                        <?php endif; ?>
+                                         >我是服务机构</option>
                                     </select>
                                 </div>
                             </div>
@@ -60,8 +73,17 @@
                             <div class="row form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <div class="custom-control custom-checkbox">
-                                        <input name="remember" type="checkbox" class="custom-control-input" id="customCheck1" <?php echo e(old('remember') ? 'checked' : ''); ?> checked="checked">
-                                        <label class="custom-control-label" for="customCheck1">记住我</label>
+                                        <input name="remember" type="checkbox" class="custom-control-input" 
+                                        <?php if(isset($remember)): ?>
+                                            <?php echo e($remember=='on' ? 'checked':''); ?>
+
+                                        <?php elseif(old('account_phone')=='' && old('remember')==''): ?>
+                                            checked 
+                                        <?php elseif(old('remember')=='on'): ?> 
+                                            checked 
+                                        <?php endif; ?>
+                                          id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1" id="rememberme">记住我</label>
                                     </div>
                                 </div>
                             </div>

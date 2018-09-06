@@ -10,6 +10,7 @@ use Illuminate\Cache\RateLimiter;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 
@@ -37,7 +38,6 @@ class LoginController extends Controller
     protected $redirectUserTo = '/user';
     protected $redirectAgentTo = '/agent';
     protected $role = 'user';
-
     /**
      * Create a new controller instance.
      *
@@ -49,9 +49,21 @@ class LoginController extends Controller
         //$this->middleware('guest')->except('logout');
     }
 
-     public function showLoginForm()
+     public function showLoginForm(Request $request)
     {
-        return view('auth.login');
+        if($request->cookie('remember')=='on' && $request->cookie('times')==1){
+            \Cookie::queue(\Cookie::forget('times'));
+            return view('auth.login')->with([
+                'username'=>$request->cookie('username'),
+                'password'=>$request->cookie('password'),
+                'role'=>$request->cookie('role'),
+                'remember'=>$request->cookie('remember'),
+            ]);
+        }
+        else{
+            \Cookie::queue(\Cookie::forget('times'));
+            return view('auth.login');
+        }
     }
 
     /**
@@ -74,9 +86,9 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
+             return $this->sendLoginResponse($request);
         }
-
+        
         // If the login attempt was unsuccessful we will increment the number of attempts
         // to login and redirect the user back to the login form. Of course, when this
         // user surpasses their maximum number of attempts they will get locked out.
@@ -147,7 +159,7 @@ class LoginController extends Controller
         if ($this->role == 'user')
             return $this->redirectUserTo;
         if ($this->role == 'agent')
-            return $this->redirectAgentTo;    
+            return $this->redirectAgentTo;
         
         return '/';
     }
@@ -163,7 +175,23 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+        //认证通过后的操作
+        //设置记住我cookie;
+        if($request->remember=='on'){
+            \Cookie::queue('username', $request->account_phone,1024000);
+            \Cookie::queue('password', $request->password,1024000);
+            \Cookie::queue('role', $request->role,1024000);
+            \Cookie::queue('remember', 'on',1024000);
+            \Cookie::queue('times', 1,1024000);
+
+        }
+        else{
+            \Cookie::queue('remember', 'off',1024000);
+            \Cookie::queue(\Cookie::forget('username'));
+            \Cookie::queue(\Cookie::forget('password'));
+            \Cookie::queue(\Cookie::forget('role'));
+            \Cookie::queue(\Cookie::forget('times'));
+        }
     }
 
     /**
@@ -197,6 +225,16 @@ class LoginController extends Controller
         return redirect('/');
     }
 
+    public function agentLogout(Request $request)
+    {
+        $this->role="agent";
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/');
+    }
+
     /**
      * Get the guard to be used during authentication.
      *
@@ -204,7 +242,6 @@ class LoginController extends Controller
      */
     protected function guard()
     {
-
         return Auth::guard($this->role);
         
     }

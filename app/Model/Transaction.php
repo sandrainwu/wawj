@@ -4,18 +4,18 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class message extends Model
+class transaction extends Model
 {
     //
 
-	public $table="message";
+	public $table="transaction";
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'from_id', 'to_id', 'message_type','route', 'subject',
+        'user_id', 'transaction', 'community','house_type', 'area', 'price', 'certificate_number', 'feature',
     ];
 
     /**
@@ -24,7 +24,6 @@ class message extends Model
      * @var array
      */
     protected $hidden = [
-        
     ];
 
 

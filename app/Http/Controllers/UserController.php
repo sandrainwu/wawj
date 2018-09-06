@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Message;
+use App\Model\Agent;
+use App\Model\Agency;
+use App\Model\Transaction;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,23 +63,23 @@ class UserController extends Controller
 
     }
 
-	public function messageSave(Request $request)
+	public function transactionSave(Request $request)
 	{
 
         $this->validator($request->all())->validate();
         
         if ( $request->filled('post_id')){
 
-            $this->editMessage($request->all());
+            $this->editTransaction($request->all());
         }
 
-        elseif  ( $request->filled('user_id')){
+        else {
             
-            $this->createMessage($request->all());
+            $this->createTransaction($request->all());
         
         }
         
-        return view('user.messagesavesuccess');
+        return view('user.transactionsavesuccess');
 
     }
 
@@ -92,7 +94,6 @@ class UserController extends Controller
         	'feature.Required'=>'请填写房产特点',
         ];
         return Validator::make($data, [
-            'user_id' => 'required|integer',
             'house_type' => 'required',
             'area' => 'required',
             'price' => 'required',
@@ -103,11 +104,11 @@ class UserController extends Controller
     }
 
 
-	protected function createMessage(array $data)
+	protected function createTransaction(array $data)
     {
        
-        return Message::create([
-                'user_id' => $data['user_id'],
+        return Transaction::create([
+                'user_id' => Auth::id(),
                 'transaction' => $data['transaction'],
                 'community' => $data['community'],
                 'house_type' => $data['house_type'],
@@ -119,9 +120,9 @@ class UserController extends Controller
     
     }
     
-    protected function editMessage(array $data)
+    protected function editTransaction(array $data)
     {
-        $mypost = Message::find($data['post_id']);
+        $mypost = Transaction::find($data['post_id']);
         $mypost->user_id = $data['user_id'];
         $mypost->community = $data['community'];
         $mypost->house_type = $data['house_type'];
@@ -133,32 +134,52 @@ class UserController extends Controller
 
     }
 
-    protected function postListDelete(Request $request,$id)
+    protected function postListDelete(Request $request)
     {
         if ( $request->filled('tobedeleted')){
+            $id=Auth::id();
+            $deleted = array();
             foreach ($request->tobedeleted as $b=>$c){
-                $vv="delete from message where id=$c and user_id=$id";
-                $deleted = DB::delete($vv);
+                $v="delete from transaction where id=$c and user_id=$id";
+                if(DB::delete($v)){
+                    $deleted[$b]=$c;
+                }
             }
+            return $deleted;
         }
-        //return $this->postList($id);
-        return "ok";
+        return "false";
     }
 
 
-    protected function postList($id)
+    protected function postList()
     {
-        $count = Message::where('user_id', $id)->count();
-        $list = Message::where('user_id',$id)->orderBy('created_at','desc')->get();
+        $id=Auth::id();
+        $count = Transaction::where('user_id', $id)->count();
+        $list = Transaction::where('user_id',$id)->orderBy('created_at','desc')->get();
         return view('user.postlist',[
         'list' => $list,
         'count' => $count,
     ]);
     }
 
+    protected function searchPost(Request $request)
+    {
+        $id=Auth::id();
+        //$count = Transaction::where('user_id', $id)->count();
+        $result = Transaction::where('user_id',$id)->where('community','like','%'.$request->search.'%')->select('id','transaction','community')->get();
+        return $result;
+    }
+    protected function postInfo($id)
+    {
+        $user_id=Auth::id();
+        //$count = Transaction::where('user_id', $id)->count();
+        $result = Transaction::where('id',$id)->where('user_id',$user_id)->select('community','transaction','house_type','area','feature','price')->get();
+        return $result[0];
+    }
+
     protected function saleHouseEdit($id)
     {
-        $list = Message::find($id);
+        $list = Transaction::find($id);
         return view('user.salehouse',[
         'list' => $list,
         'post_id' => $id,
@@ -169,7 +190,7 @@ class UserController extends Controller
    
     protected function rentHouseEdit($id)
     {
-        $list = Message::find($id);
+        $list = Transaction::find($id);
         return view('user.renthouse',[
         'list' => $list,
         'post_id' => $id,
@@ -179,7 +200,7 @@ class UserController extends Controller
     }
     protected function letHouseEdit($id)
     {
-        $list = Message::find($id);
+        $list = Transaction::find($id);
         return view('user.lethouse',[
         'list' => $list,
         'post_id' => $id,
@@ -201,7 +222,7 @@ class UserController extends Controller
 
     protected function buyHouseEdit($id)
     {
-        $list = Message::find($id);
+        $list = Transaction::find($id);
         return view('user.buyhouse',[
         'list' => $list,
         'post_id' => $id,
@@ -210,5 +231,34 @@ class UserController extends Controller
 
     }
 
+    public function searchAgent(Request $request){
+        $result = Agent::where('real_name','like','%'.$request->search.'%')->where('active', 'Active')->select('id','real_name','account_phone')->get();
+        return $result;
+    }
+    
+    public function searchAgency(Request $request){
+        $result = Agency::where('agency_name','like','%'.$request->search.'%')->orWhere('introduction','like','%'.$request->search.'%')->where('active', 'Active')->select('id','agency_name','phone')->get();
+        return $result;
+    }
 
+    public function bindAgentTransaction(Request $request){
+        $bind_agent=$request->bind_agent;
+        $bind_transaction=$request->bind_transaction;
+        if($bind_agent!="" and $bind_transaction!=""){
+            $t = explode("-", $bind_agent);
+            $sql="insert into message (from_group,from_id,to_group,to_id,message_type,appendix) values ('user','".Auth::id()."','".$t[0]."','".$t[1]."','请求代理业务','";
+            if($bind_transaction=='all' or  $bind_transaction=="before" or  $bind_transaction=="after"){
+                $s= DB::table('transaction')->max('id');
+                $sql.=$bind_transaction."|".$s."')";
+            }
+            else{
+                $sql.=$bind_transaction."')";
+            }
+            if(DB::insert($sql))
+                return 'true';
+            else
+                return 'false';
+        }
+
+    }
 }

@@ -6,11 +6,10 @@
 
 @section('content')
 <br>
-<form action="{{ route('messageSave') }}" method="post">
-    <input type="hidden" name="user_id" value="{{  Auth::id() }}">
+<form action="{{ route('userTransactionSave') }}" method="post">
     <input type="hidden" name="transaction" value="buy">
-        {!! isset($post_id) ? '<input type="hidden" name="post_id" value="'.$post_id.'">' : '' !!}
-        @CSRF
+    {!! isset($post_id) ? '<input type="hidden" name="post_id" value="'.$post_id.'">' : '' !!}
+    @CSRF
 
 <div class="container">
     <div class="row">
@@ -81,7 +80,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3">面积</span>
                     </div>
-                    <input placeholder="建筑面积" type="number" class="form-control{{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ $list->area or old('area') }}" required aria-describedby="basic-addon3">
+                    <input placeholder="建筑面积" type="number" min="0" max="999999999999" class="form-control{{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ $list->area or old('area') }}" required aria-describedby="basic-addon3">
                     <div class="input-group-append">
                         <span class="input-group-text pl-2" style="width:50px;">m<sup>2</sup></span>
                     </div>
