@@ -65,7 +65,7 @@
                                         <?php else: ?>
                                             <?php echo e(old('role')=='agent'?'selected':''); ?> 
                                         <?php endif; ?>
-                                         >我是服务机构</option>
+                                         >我是工作人员</option>
                                     </select>
                                 </div>
                             </div>
@@ -77,9 +77,10 @@
                                         <?php if(isset($remember)): ?>
                                             <?php echo e($remember=='on' ? 'checked':''); ?>
 
-                                        <?php elseif(old('account_phone')=='' && old('remember')==''): ?>
-                                            checked 
-                                        <?php elseif(old('remember')=='on'): ?> 
+                                        <?php elseif($errors->any()): ?>
+                                               <?php echo e(old('remember')); ?>
+
+                                        <?php else: ?> 
                                             checked 
                                         <?php endif; ?>
                                           id="customCheck1">
@@ -106,5 +107,7 @@
 </div>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('bottom'); ?>
 <?php echo $__env->make('layouts.baseframebrandbottom', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

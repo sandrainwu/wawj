@@ -16,7 +16,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-user-o fa-fw"></i></div>
                                     </div>
-                                    <input type="tel" class="form-control" autocomplete="on" placeholder="手机号码" aria-label="请输入11位手机号" aria-describedby="btnGroupAddon" id="account_phone" class="form-control" name="account_phone" value="{{ $username or  old('account_phone') }}" required autofocus>
+                                    <input type="tel" class="form-control" autocomplete="on" placeholder="手机号码" aria-label="请输入11位手机号" aria-describedby="btnGroupAddon" id="account_phone" class="form-control" name="account_phone" value="{{ $username or old('account_phone') }}" required autofocus>
                                 </div>
                             </div>
                             @if ($errors->has('account_phone'))
@@ -64,7 +64,7 @@
                                         @else
                                             {{ old('role')=='agent'?'selected':'' }} 
                                         @endif
-                                         >我是服务机构</option>
+                                         >我是工作人员</option>
                                     </select>
                                 </div>
                             </div>
@@ -75,9 +75,9 @@
                                         <input name="remember" type="checkbox" class="custom-control-input" 
                                         @if (isset($remember))
                                             {{ $remember=='on' ? 'checked':'' }}
-                                        @elseif (old('account_phone')=='' && old('remember')=='')
-                                            checked 
-                                        @elseif (old('remember')=='on') 
+                                        @elseif ($errors->any())
+                                               {{ old('remember') }}
+                                        @else 
                                             checked 
                                         @endif
                                           id="customCheck1">
@@ -104,4 +104,6 @@
 </div>
 @endsection
 
+@section('bottom')
 @include('layouts.baseframebrandbottom')
+@endsection

@@ -66,7 +66,7 @@ color:#eb4e3d;
 			</div>
 			<br>
 			<div class="row border-top border-bottom">
-			    <div class="w-100 my-2 text-center"><a href="<?php echo e(route('userLogout')); ?>" class="text-secondary">退出登录<i class="fa fa-lock fa-fw"></i></a></div>
+			    <div class="w-100 my-2 text-center"><a href="<?php echo e(route('logout','user')); ?>" class="text-secondary">退出登录<i class="fa fa-lock fa-fw"></i></a></div>
 			</div>
 		</div>
 	</div>

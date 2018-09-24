@@ -15,7 +15,7 @@ class message extends Model
      * @var array
      */
     protected $fillable = [
-        'from_id', 'to_id', 'message_type','route', 'subject',
+        'reply_to_id','from_group', 'from_id', 'to_group', 'to_id', 'message_type', 'subject','appendix','readed','replyed',
     ];
 
     /**

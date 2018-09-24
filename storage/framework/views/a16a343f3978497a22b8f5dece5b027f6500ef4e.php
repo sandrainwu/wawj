@@ -28,12 +28,12 @@ color:#eb4e3d;
     <!-- 第1个tab -->
     <div class="tab-pane show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <ul class="myul">
-            <li><a href="<?php echo e(route('agentBuyHouse')); ?>"><i class="fa fa-credit-card fa-2x"></i><div>代客买房</div></a></li>
+            <li><a href="<?php echo e(route('agentBuyHouse')); ?>"><i class="fa fa-credit-card fa-2x"></i><div>1111111代客买房</div></a></li>
             <li><a href="<?php echo e(route('agentJoinAgency')); ?>"><i class="fa fa-legal fa-2x"></i><div>申请加盟中介机构</div></a></li>
-            <li><a href="<?php echo e(route('/', ['id' => Auth::id()])); ?>"><i class="fa fa-file-text-o fa-2x"></i><div>我的发布</div></a></li>
-            <li><a href="<?php echo e(route('/')); ?>"><i class="fa fa-bed fa-2x"></i><div>代客租房</div></a></li>
-            <li><a href="<?php echo e(route('/')); ?>"><i class="fa fa-institution fa-2x"></i><div>代客出租</div></a></li>
-            <li><a href="<?php echo e(route('/')); ?>"><i class="fa fa-black-tie fa-2x"></i><div>应聘代理人</div></a></li>
+            <li><a href="<?php echo e(route('/', ['id' => Auth::id()])); ?>"><i class="fa fa-file-text-o fa-2x"></i><div>111我的发布</div></a></li>
+            <li><a href="<?php echo e(route('/')); ?>"><i class="fa fa-bed fa-2x"></i><div>11111代客租房</div></a></li>
+            <li><a href="<?php echo e(route('/')); ?>"><i class="fa fa-institution fa-2x"></i><div>1111代客出租</div></a></li>
+            <li><a href="<?php echo e(route('/')); ?>"><i class="fa fa-black-tie fa-2x"></i><div>111111应聘代理人</div></a></li>
         </ul>
     </div>
     <!-- 第1个tab -->
@@ -43,20 +43,20 @@ color:#eb4e3d;
         <br>
         <div class="container">
             <div class="row border-top">
-                <div class="col my-2"><a href="#none" class="text-secondary">来自客户的消息</a></div>
-                <div class="col my-2 text-right"><a href="#none" class="text-secondary"><span class="badge badge-danger align-text-bottom"><?php echo e($from_client>0 ? $from_client : ''); ?></span> <i class="fa fa-chevron-right"></i></a></div>
+                <div class="col my-2">
+                    <a href="<?php echo e(route('clientMessage')); ?>" class="text-secondary">
+                        <table class="w-100"><tr><td>来自客户的消息</td><td align="right"><span class="badge badge-danger align-text-bottom"><?php echo e($from_client>0 ? $from_client : ''); ?></span> <i class="fa fa-chevron-right"></i></td></tr>
+                        </table>
+                    </a>
+                </div>
             </div>
             <div class="row border-top text-secondary">
-                <div class="col my-2"><a href="#none" class="text-secondary">来自公司的消息</a></div>
-                <div class="col my-2 text-right"><a href="#none" class="text-secondary"><span class="badge badge-danger align-text-bottom"><?php echo e($from_agency>0 ? $from_agency : ''); ?></span> <i class="fa fa-chevron-right"></i></a></div>
+                <div class="col my-2"><a href="<?php echo e(route('clientMessage')); ?>" class="text-secondary">来自公司的消息</a></div>
+                <div class="col my-2 text-right"><a href="<?php echo e(route('clientMessage')); ?>" class="text-secondary"><span class="badge badge-danger align-text-bottom"><?php echo e($from_agency>0 ? $from_agency : ''); ?></span> <i class="fa fa-chevron-right"></i></a></div>
             </div>
             <div class="row border-top border-bottom">
                 <div class="col my-2"><a href="#none" class="text-secondary">来自同仁的消息</a></div>
                 <div class="col my-2 text-right"><a href="#none" class="text-secondary"><span class="badge badge-danger align-text-bottom"><?php echo e($from_agent>0 ? $from_agent : ''); ?></span> <i class="fa fa-chevron-right"></i></a></div>
-            </div>
-            <br>
-            <div class="row border-top border-bottom">
-                <div class="w-100 my-2 text-center"><a href="<?php echo e(route('agentLogout')); ?>" class="text-secondary">退出登录<i class="fa fa-lock fa-fw"></i></a></div>
             </div>
         </div>
     </div>
@@ -71,8 +71,12 @@ color:#eb4e3d;
         <br>
         <div class="container">
             <div class="row border-top">
-                <div class="col my-2"><a href="#none" class="text-secondary">修改密码</a></div>
-                <div class="col my-2 text-right"><a href="#none" class="text-secondary"><i class="fa fa-key fa-fw"></i> <i class="fa fa-chevron-right"></i></a></div>
+                <div class="col my-2">
+                    <a href="<?php echo e(route('changePassword')); ?>" class="text-secondary">
+                        <table class="w-100"><tr><td>修改密码</td><td align="right"><span class="badge badge-danger align-text-bottom"><?php echo e($from_client>0 ? $from_client : ''); ?></span> <i class="fa fa-key fa-fw"></i> <i class="fa fa-chevron-right"></i></td></tr>
+                        </table>
+                    </a>
+                </div>
             </div>
             <div class="row border-top text-secondary">
                 <div class="col my-2"><a href="#none" class="text-secondary">身份认证</a></div>
@@ -84,7 +88,7 @@ color:#eb4e3d;
             </div>
             <br>
             <div class="row border-top border-bottom">
-                <div class="w-100 my-2 text-center"><a href="<?php echo e(route('agentLogout')); ?>" class="text-secondary">退出登录<i class="fa fa-lock fa-fw"></i></a></div>
+                <div class="w-100 my-2 text-center"><a href="<?php echo e(route('logout',['guardname' =>'agent'])); ?>" class="text-secondary">退出登录<i class="fa fa-lock fa-fw"></i></a></div>
             </div>
         </div>
     </div>
@@ -105,11 +109,28 @@ color:#eb4e3d;
     <nav class="navbar-toggle fixed-bottom navbar-light bg-light border-top">
       <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist" style="font-size:12px;-webkit-transform: scale(0.90);line-height:12px;">
         <li class="nav-item"><a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><i class="fa fa-home fa-2x"></i><div>首页</div></a></li>
-        <li class="nav-item"><a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fa fa-telegram fa-2x"></i><span class="badge badge-danger align-top"><?php echo e($message_count>0 ? $message_count : ''); ?></span><div>消息</div></a></li>
+        <li class="nav-item"><a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><?php echo $message_count>0 ? '&nbsp;&nbsp;&nbsp;&nbsp;' : ''; ?><i class="fa fa-telegram fa-2x"></i><span class="badge badge-danger align-top"><?php echo e($message_count>0 ? $message_count : ''); ?></span><div>消息</div></a></li>
         <li class="nav-item"><a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fa fa-heart fa-2x"></i><div>关注</div></a></li>
         <li class="nav-item"><a class="nav-link" id="pills-contacts-tab" data-toggle="pill" href="#pills-contacts" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fa fa-user-circle fa-2x"></i><div>我的</div></a></li>
       </ul>
     </nav>
 <!-- 底部固定栏 -->
+<script type="text/javascript">
+    $(function () {
+        hash = window.location.hash
+        switch(hash){
+        case "#xiaoxi":
+            $("#pills-profile-tab").click()
+            break
+        case "#guanzhu":
+            $("#pills-contact-tab").click()
+          break
+        case "#wode":
+          $("#pills-contacts-tab").click()
+          break
+        default:
+        }
+    })
+</script>    
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

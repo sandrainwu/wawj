@@ -5,15 +5,14 @@
 @endsection
 
 @section('content')
-<form id="myform" name="myform" action="" method="post">
-    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+<form id="myform">
     @CSRF
 <div class="container">
     <div class="row">
         
     <style type="text/css">
         a{color: #3982ba;"}
-    </style>          
+    </style>
         <table class="table table-striped w-100" id="table">
             @foreach($list as $agency)
             <tr id="row_{{ $agency->id }}">
@@ -21,20 +20,20 @@
                 @if(strpos($belong_to_agency,('|'.$agency->id.'|')) !==false)
                     <td width="40px"></td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ $agency->agency_name }}" value="{{ route('agencyInfo', ['id' => $agency->id]) }}">{{ $agency->agency_name }} <span class="badge badge-success">已加盟</span></button>
+                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ $agency->agency_name }}" value="{{ route('agencyDetail', ['id' => $agency->id]) }}">{{ $agency->agency_name }} <span class="badge badge-success">已加盟</span></button>
                     </td>
-                    <td align="right"><button type='button' class='btn btn-primary btn-sm drawback invisible'>撤回</button></td>
+                    <td align="right"><button type='button' class='btn btn-primary btn-sm withdraw invisible'>撤回</button></td>
                 @elseif(strpos($apply_to_agency,('|'.$agency->id.'|')) !==false)
                     <td width="40px"><input name="tobeselected[]" value="{{ $agency->id}}" type="checkbox"></td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ $agency->agency_name }}" value="{{ route('agencyInfo', ['id' => $agency->id]) }}">{{ $agency->agency_name }} <span class="badge badge-danger">申请中</span></button>
-                    <td align="right"><button type='button' class='btn btn-primary btn-sm drawback'>撤回</button></td>
+                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ $agency->agency_name }}" value="{{ route('agencyDetail', ['id' => $agency->id]) }}">{{ $agency->agency_name }} <span class="badge badge-danger">申请中</span></button>
+                    <td align="right"><button type='button' class='btn btn-primary btn-sm withdraw'>撤回</button></td>
                 @else
                     <td width="40px"><input name="tobeselected[]" value="{{ $agency->id}}" type="checkbox"></td>
                     <td>    
-                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ $agency->agency_name }}" value="{{ route('agencyInfo', ['id' => $agency->id]) }}">{{ $agency->agency_name }} <span class="badge badge-success"></span></button>
+                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ $agency->agency_name }}" value="{{ route('agencyDetail', ['id' => $agency->id]) }}">{{ $agency->agency_name }} <span class="badge badge-success"></span></button>
                     </td>
-                    <td align="right"><button type='button' class='btn btn-primary btn-sm drawback invisible'>撤回</button></td>
+                    <td align="right"><button type='button' class='btn btn-primary btn-sm withdraw invisible'>撤回</button></td>
                 @endif
 
             </tr>
@@ -97,7 +96,7 @@
                         $("#row_"+result[i]).find(".badge").removeClass("badge-success");
                         $("#row_"+result[i]).find(".badge").addClass("badge-danger");
                         $("#row_"+result[i]).find(".badge").text("申请中");
-                        $("#row_"+result[i]).find(".drawback").removeClass("invisible");
+                        $("#row_"+result[i]).find(".withdraw").removeClass("invisible");
                         $("#row_"+result[i]).find("input").prop("checked",null);
                         $('#checkall').text("全 选");
                     }
@@ -107,11 +106,11 @@
                 alert('请选择申请加盟的机构');
         });
         
-        $('.drawback').click(function () {
+        $('.withdraw').click(function () {
             var agencyid = $(this).parent().parent().find('input').val();
             $.post("{{ $_SERVER['REQUEST_URI'] }}",{_method:"put",_token:$("input[name='_token']").val(),agencyid:agencyid},function(result){
                 $("#row_"+result[0]).find(".badge").text("");
-                $("#row_"+result[0]).find(".drawback").addClass("invisible");
+                $("#row_"+result[0]).find(".withdraw").addClass("invisible");
             });
         });
 

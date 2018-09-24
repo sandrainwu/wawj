@@ -75,6 +75,7 @@
 <!-- 首页内容-->
 @endsection
 
+@section('bottom')
 @include('layouts.baseframebrandbottom')
 <script type="text/javascript">
 window.onload = choosePic;
@@ -84,3 +85,4 @@ function choosePic() {
     document.getElementById("myPicture").src = myPix[randomNum];
 }
 </script>
+@endsection

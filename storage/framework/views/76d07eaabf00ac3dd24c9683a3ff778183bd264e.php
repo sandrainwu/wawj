@@ -73,6 +73,7 @@
 <!-- 首页内容-->
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('bottom'); ?>
 <?php echo $__env->make('layouts.baseframebrandbottom', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <script type="text/javascript">
 window.onload = choosePic;
@@ -82,4 +83,5 @@ function choosePic() {
     document.getElementById("myPicture").src = myPix[randomNum];
 }
 </script>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

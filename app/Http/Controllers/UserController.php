@@ -169,7 +169,7 @@ class UserController extends Controller
         $result = Transaction::where('user_id',$id)->where('community','like','%'.$request->search.'%')->select('id','transaction','community')->get();
         return $result;
     }
-    protected function postInfo($id)
+    protected function transactionDetail($id)
     {
         $user_id=Auth::id();
         //$count = Transaction::where('user_id', $id)->count();

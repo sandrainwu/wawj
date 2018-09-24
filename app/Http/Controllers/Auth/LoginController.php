@@ -47,11 +47,13 @@ class LoginController extends Controller
     {
 
         //$this->middleware('guest')->except('logout');
+        //$this->middleware('isloginredirecthome:user_agent');
     }
 
      public function showLoginForm(Request $request)
     {
-        if($request->cookie('remember')=='on' && $request->cookie('times')==1){
+        if(\Cookie::has('remember') && $request->cookie('times')==1){
+
             \Cookie::queue(\Cookie::forget('times'));
             return view('auth.login')->with([
                 'username'=>$request->cookie('username'),
@@ -62,6 +64,14 @@ class LoginController extends Controller
         }
         else{
             \Cookie::queue(\Cookie::forget('times'));
+            if(Auth::guard('agent')->check()){
+                return redirect(route('agentHome'));
+                exit;
+            }
+            if(Auth::guard('user')->check()){
+                return redirect(route('userHome'));
+                exit;
+            }
             return view('auth.login');
         }
     }
@@ -175,8 +185,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        //认证通过后的操作
-        //设置记住我cookie;
+        //认证通过后设置记住我cookie;
         if($request->remember=='on'){
             \Cookie::queue('username', $request->account_phone,1024000);
             \Cookie::queue('password', $request->password,1024000);
@@ -216,20 +225,10 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
+    public function logout(Request $request, $guardname)
     {
+        $this->role=$guardname;
         $this->guard()->logout();
-
-        $request->session()->invalidate();
-
-        return redirect('/');
-    }
-
-    public function agentLogout(Request $request)
-    {
-        $this->role="agent";
-        $this->guard()->logout();
-
         $request->session()->invalidate();
 
         return redirect('/');

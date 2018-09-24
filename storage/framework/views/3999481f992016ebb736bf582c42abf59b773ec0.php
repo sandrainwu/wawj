@@ -3,15 +3,14 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-<form id="myform" name="myform" action="" method="post">
-    <input type="hidden" name="user_id" value="<?php echo e(Auth::id()); ?>">
+<form id="myform">
     <?php echo csrf_field(); ?>
 <div class="container">
     <div class="row">
         
     <style type="text/css">
         a{color: #3982ba;"}
-    </style>          
+    </style>
         <table class="table table-striped w-100" id="table">
             <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $agency): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr id="row_<?php echo e($agency->id); ?>">
@@ -19,20 +18,20 @@
                 <?php if(strpos($belong_to_agency,('|'.$agency->id.'|')) !==false): ?>
                     <td width="40px"></td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo e($agency->agency_name); ?>" value="<?php echo e(route('agencyInfo', ['id' => $agency->id])); ?>"><?php echo e($agency->agency_name); ?> <span class="badge badge-success">已加盟</span></button>
+                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo e($agency->agency_name); ?>" value="<?php echo e(route('agencyDetail', ['id' => $agency->id])); ?>"><?php echo e($agency->agency_name); ?> <span class="badge badge-success">已加盟</span></button>
                     </td>
-                    <td align="right"><button type='button' class='btn btn-primary btn-sm drawback invisible'>撤回</button></td>
+                    <td align="right"><button type='button' class='btn btn-primary btn-sm withdraw invisible'>撤回</button></td>
                 <?php elseif(strpos($apply_to_agency,('|'.$agency->id.'|')) !==false): ?>
                     <td width="40px"><input name="tobeselected[]" value="<?php echo e($agency->id); ?>" type="checkbox"></td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo e($agency->agency_name); ?>" value="<?php echo e(route('agencyInfo', ['id' => $agency->id])); ?>"><?php echo e($agency->agency_name); ?> <span class="badge badge-danger">申请中</span></button>
-                    <td align="right"><button type='button' class='btn btn-primary btn-sm drawback'>撤回</button></td>
+                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo e($agency->agency_name); ?>" value="<?php echo e(route('agencyDetail', ['id' => $agency->id])); ?>"><?php echo e($agency->agency_name); ?> <span class="badge badge-danger">申请中</span></button>
+                    <td align="right"><button type='button' class='btn btn-primary btn-sm withdraw'>撤回</button></td>
                 <?php else: ?>
                     <td width="40px"><input name="tobeselected[]" value="<?php echo e($agency->id); ?>" type="checkbox"></td>
                     <td>    
-                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo e($agency->agency_name); ?>" value="<?php echo e(route('agencyInfo', ['id' => $agency->id])); ?>"><?php echo e($agency->agency_name); ?> <span class="badge badge-success"></span></button>
+                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo e($agency->agency_name); ?>" value="<?php echo e(route('agencyDetail', ['id' => $agency->id])); ?>"><?php echo e($agency->agency_name); ?> <span class="badge badge-success"></span></button>
                     </td>
-                    <td align="right"><button type='button' class='btn btn-primary btn-sm drawback invisible'>撤回</button></td>
+                    <td align="right"><button type='button' class='btn btn-primary btn-sm withdraw invisible'>撤回</button></td>
                 <?php endif; ?>
 
             </tr>
@@ -95,7 +94,7 @@
                         $("#row_"+result[i]).find(".badge").removeClass("badge-success");
                         $("#row_"+result[i]).find(".badge").addClass("badge-danger");
                         $("#row_"+result[i]).find(".badge").text("申请中");
-                        $("#row_"+result[i]).find(".drawback").removeClass("invisible");
+                        $("#row_"+result[i]).find(".withdraw").removeClass("invisible");
                         $("#row_"+result[i]).find("input").prop("checked",null);
                         $('#checkall').text("全 选");
                     }
@@ -105,11 +104,11 @@
                 alert('请选择申请加盟的机构');
         });
         
-        $('.drawback').click(function () {
+        $('.withdraw').click(function () {
             var agencyid = $(this).parent().parent().find('input').val();
             $.post("<?php echo e($_SERVER['REQUEST_URI']); ?>",{_method:"put",_token:$("input[name='_token']").val(),agencyid:agencyid},function(result){
                 $("#row_"+result[0]).find(".badge").text("");
-                $("#row_"+result[0]).find(".drawback").addClass("invisible");
+                $("#row_"+result[0]).find(".withdraw").addClass("invisible");
             });
         });
 

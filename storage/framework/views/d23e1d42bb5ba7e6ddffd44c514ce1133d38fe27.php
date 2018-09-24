@@ -176,7 +176,7 @@
                 $.get("<?php echo e(route('searchAgency')); ?>",{search:$('#searchinput').val()},function(result){
                     var noreturn = true;
                     for(var i=0;i<result.length;i++){
-                        $("#search_agent_result").append(a+'group'+b+result[i]['agency_name']+'" value="<?php echo e(route('agencyInfo1')); ?>'+'/'+result[i]['id']+'">'+result[i]['agency_name']+c+result[i]['phone']+d+'agency-'+result[i]['id']+e);
+                        $("#search_agent_result").append(a+'group'+b+result[i]['agency_name']+'" value="<?php echo e(route('agencyDetail')); ?>'+'/'+result[i]['id']+'">'+result[i]['agency_name']+c+result[i]['phone']+d+'agency-'+result[i]['id']+e);
                         noreturn = false;
                     }
                     if (noreturn)
@@ -187,7 +187,7 @@
                 $.get("<?php echo e(route('searchAgent')); ?>",{search:$('#searchinput').val()},function(result){
                     var noreturn = true;
                     for(var i=0;i<result.length;i++){
-                        $("#search_agent_result").append(a+'user'+b+result[i]['real_name']+'" value="<?php echo e(route('agentInfo1')); ?>'+'/'+result[i]['id']+'">'+result[i]['real_name']+c+result[i]['account_phone']+d+'agent-'+result[i]['id']+e);
+                        $("#search_agent_result").append(a+'user'+b+result[i]['real_name']+'" value="<?php echo e(route('agentDetail')); ?>'+'/'+result[i]['id']+'">'+result[i]['real_name']+c+result[i]['account_phone']+d+'agent-'+result[i]['id']+e);
                         noreturn = false;
                     }
                     if (noreturn)
@@ -335,7 +335,7 @@
                                 a='<span class="badge badge-danger">求租</span>';
                                 break;
                             }
-                        $("#search_info_result").append('<tr><td>'+a+'</td><td><button type="button" class="btn btn-secondary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="'+result[i]['community']+'" value="<?php echo e(route('postInfo1')); ?>'+'/'+result[i]['id']+'">'+result[i]['community']+'</button></td><td align="center"><button type="button" class="btn btn-secondary btn-sm" value="|'+result[i]['id']+'|" id="choice_transaction">选定</button></td></tr>');
+                        $("#search_info_result").append('<tr><td>'+a+'</td><td><button type="button" class="btn btn-secondary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="'+result[i]['community']+'" value="<?php echo e(route('transactionDetail')); ?>'+'/'+result[i]['id']+'">'+result[i]['community']+'</button></td><td align="center"><button type="button" class="btn btn-secondary btn-sm" value="|'+result[i]['id']+'|" id="choice_transaction">选定</button></td></tr>');
                         noreturn = false;
                     }
                     if (noreturn)
@@ -361,7 +361,7 @@
               $("#modal-body").append('<small><hr>电话:'+result['account_phone']+'</small>');
           });
       }
-      else if(button.val().indexOf("post") != -1){
+      else if(button.val().indexOf("transaction") != -1){
           $.get(button.val(),function(result){
               $("#modal-body").text("");
               $("#modal-body").append('<div>面积: '+result['area']+'</div><div>价格: '+result['price']+'</div><div>特点: '+result['feature']+'</div>');
