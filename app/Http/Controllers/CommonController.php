@@ -16,7 +16,7 @@ class CommonController extends Controller
 	public function __construct(Request $request)
     {
     
-        $this->middleware('islogin:user_agent');
+        $this->middleware('islogin:user_agent_admin');
                     
     }
     

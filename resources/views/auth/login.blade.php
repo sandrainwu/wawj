@@ -76,7 +76,7 @@
                                         @if (isset($remember))
                                             {{ $remember=='on' ? 'checked':'' }}
                                         @elseif ($errors->any())
-                                               {{ old('remember') }}
+                                               {{ old('remember')=='on'? 'checked':'' }}
                                         @else 
                                             checked 
                                         @endif

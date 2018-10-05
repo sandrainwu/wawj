@@ -1,0 +1,20 @@
+微信认证过程
+微信号： gh_82cecc00c03f
+
+appID
+wx4002d8b67d9ffae1
+appsecret
+25f1c26c8b9887d99eaa47ac95d9a46c
+
+
+以下是小程序
+AppID(小程序ID) wx7365597cef64c906
+AppSecret(小程序密钥)4a1eba9ca920caede3e622a96796feae
+
+
+
+composer require laravel/socialite
+composer require socialiteproviders/manager
+composer require socialiteproviders/weixin
+
+

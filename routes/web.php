@@ -11,6 +11,13 @@
 |
 */
 Route::pattern('id', '[0-9]+');
+Route::pattern('pageno', '[0-9]+');
+
+Route::get('auth/weixin', 'Auth\WeixinController@redirectToProvider');
+Route::get('auth/weixin/callback', 'Auth\WeixinController@handleProviderCallback');
+//Route::get('/auth/oauth', 'Auth\AuthController@oauth');
+//Route::get('/auth/callback', 'Auth\AuthController@callback');
+
 Route::view('/', 'index')->name('/');
 Auth::routes();
 Route::get('logout/{guardname}', 'Auth\LoginController@logout')->where('guardname', '[a-z]+')->name('logout');
@@ -54,4 +61,15 @@ Route::prefix('user')->group(function () {
 	Route::get('searchPost', 'UserController@searchPost')->name('searchPost');
 	Route::get('transactionDetail/{id?}', 'UserController@transactionDetail')->name('transactionDetail');
 	Route::get('bindAgentTransaction', 'UserController@bindAgentTransaction')->name('bindAgentTransaction');
+});
+
+Route::prefix('admin')->group(function () {
+	Route::get('login', 'Auth\LoginController@showLoginFormAdmin');
+	Route::get('/', 'AdminController@HomeOfAdmin')->name('adminHome');
+	Route::get('manage/{table}/{id?}/{pageno?}', 'CrudController@index')->name('manageTable');//列表
+	Route::post('manage/{table}/', 'CrudController@create');//新增
+	Route::delete('manage/{table}/{id?}', 'CrudController@destroy');//删除
+	Route::patch('manage/{table}/{id?}', 'CrudController@update');//修改
+	Route::patch('manage/{table}/{id?}', 'CrudController@search');//查询
+	
 });

@@ -37,6 +37,7 @@ class LoginController extends Controller
      */
     protected $redirectUserTo = '/user';
     protected $redirectAgentTo = '/agent';
+    protected $redirectAdminTo = '/admin';
     protected $role = 'user';
     /**
      * Create a new controller instance.
@@ -76,6 +77,11 @@ class LoginController extends Controller
         }
     }
 
+     public function showLoginFormAdmin(Request $request)
+    {
+            return view('auth.adminlogin');
+    }
+
     /**
      * Handle a login request to the application.
      *
@@ -85,7 +91,6 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -94,10 +99,11 @@ class LoginController extends Controller
 
             return $this->sendLockoutResponse($request);
         }
-
+        
         if ($this->attemptLogin($request)) {
              return $this->sendLoginResponse($request);
         }
+
         
         // If the login attempt was unsuccessful we will increment the number of attempts
         // to login and redirect the user back to the login form. Of course, when this
@@ -170,6 +176,8 @@ class LoginController extends Controller
             return $this->redirectUserTo;
         if ($this->role == 'agent')
             return $this->redirectAgentTo;
+        if ($this->role == 'admin')
+            return $this->redirectAdminTo;
         
         return '/';
     }
@@ -202,6 +210,8 @@ class LoginController extends Controller
             \Cookie::queue(\Cookie::forget('times'));
         }
     }
+
+
 
     /**
      * Get the failed login response instance.

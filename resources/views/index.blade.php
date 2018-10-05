@@ -39,12 +39,23 @@
                     <a href="{{ route('login') }}" class="btn btn-primary btn-block">登 录</a>
                 </div>
             </div>
-
-            <div class="row form-group">
+            
+            <div class="row mb-2">
                 <div class="col-md-12">
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-block">游 客</a>
+                    <span class="text-secondary">使用其他账户登录:</span>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group justify-content-between">
+                        <a href="{{ route('login') }}" class="btn btn-outline-secondary"><i class="fa fa-weixin fa-lg"></i> <span class="small">微信</span></a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-secondary"><i class="fa fa-qq fa-lg"></i> <span class="small">&nbsp;QQ&nbsp;&nbsp;</span></a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-secondary"><i class="fa fa-weibo fa-lg"></i> <span class="small">微博</span></a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -52,7 +63,7 @@
 
 <!-- 中间内容-->
 <!-- 首页内容-->
-<br><br>
+<br><br><br>
 <div class="container">
     <div class="row">
         <div class="col-md-4 text-secondary">

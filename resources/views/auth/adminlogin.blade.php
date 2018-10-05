@@ -1,7 +1,7 @@
 @extends('layouts.baseframe')
 
 @section('top_title')
-<a class="navbar-brand" href="{{ route('/') }}"><img alt="Brand" src="{{ asset('img/wawj.svg') }}" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a><span class="text-white">用户注册</span>
+<a class="navbar-brand" href="{{ route('/') }}"><img alt="Brand" src="{{ asset('img/wawj.svg') }}" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a><span class="text-white">系统管理员</span>
 @endsection
 
 @section('content')
@@ -9,10 +9,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                       <div class="row form-group">
+                        <form id="login_form" method="POST" action="{{ route('login') }}">
+                            <input name="role" value="admin" type="hidden">
+                            {{ csrf_field() }}
+                            <div class="row form-group">
                                 <div class="col-md-12 input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-user-o fa-fw"></i></div>
@@ -27,6 +27,7 @@
                                 </div>
                             </div>
                             @endif
+
 
                             <div class="row form-group">
                                 <div class="col-md-12 input-group">
@@ -45,39 +46,9 @@
                             @endif
 
                             <div class="row form-group">
-                                <div class="col-md-12 input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text" id="btnGroupAddon2"><i class="fa fa-key fa-fw"></i></div>
-                                    </div>
-                                    <input placeholder="确认密码" autocomplete="off" type="password" aria-describedby="btnGroupAddon2" id="password-confirm" class="form-control" name="password-confirm" value="{{ $password or '' }}" required>
-                                </div>
-                            </div>
-                            @if ($errors->has('password'))
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="text-danger"><strong>{{ $errors->first('password') }}</strong></span>
-                                </div>
-                            </div>
-                            @endif
-
-                            <div class="row form-group mb-3">
-                                <div class="col-md-12 input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text" id="btnGroupAddon3"><i class="fa fa-user-circle-o fa-fw"></i></div>
-                                    </div>
-                                    <select name="role" class="custom-select">
-                                        <option value="user" {{ old('role')=='user'?'selected':'' }}>我要注册为客户</option>
-                                        <option value="agent" {{ old('role')=='agent'?'selected':'' }}>我要注册为中介工作人员</option>
-                                        <option value="agency" {{ old('role')=='agency'?'selected':'' }}>我要注册中介机构</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="row form-group">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary btn-block">
-                                        注 册
+                                        登 录
                                     </button>
                                 </div>
                             </div>
