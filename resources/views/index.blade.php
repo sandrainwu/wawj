@@ -35,23 +35,23 @@
             </div>
             <br>
             <div class="row form-group">
-                <div class="col-md-12">
+                <div class="col-md-12 mb-2">
                     <a href="{{ route('login') }}" class="btn btn-primary btn-block">登 录</a>
                 </div>
             </div>
             
-            <div class="row mb-2">
-                <div class="col-md-12">
-                    <span class="text-secondary">使用其他账户登录:</span>
+            <div class="row" style="line-height: 0">
+                <div class="col-md-12 mb-0">
+                    <span class="text-secondary small">使用其他账户登录:</span><hr>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group justify-content-between">
-                        <a href="{{ route('login') }}" class="btn btn-outline-secondary"><i class="fa fa-weixin fa-lg"></i> <span class="small">微信</span></a>
-                        <a href="{{ route('login') }}" class="btn btn-outline-secondary"><i class="fa fa-qq fa-lg"></i> <span class="small">&nbsp;QQ&nbsp;&nbsp;</span></a>
-                        <a href="{{ route('login') }}" class="btn btn-outline-secondary"><i class="fa fa-weibo fa-lg"></i> <span class="small">微博</span></a>
+                        <a href="{{ route('login') }}" class="btn btn-success"><i class="fa fa-weixin fa-lg"></i> <span class="small">微信</span></a>
+                        <a href="{{ route('login') }}" class="btn btn-info"><i class="fa fa-qq fa-lg"></i> <span class="small">&nbsp;QQ&nbsp;&nbsp;</span></a>
+                        <a href="{{ route('login') }}" class="btn btn-danger"><i class="fa fa-weibo fa-lg"></i> <span class="small">微博</span></a>
                     </div>
                 </div>
             </div>
