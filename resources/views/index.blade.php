@@ -78,7 +78,7 @@
 
         <div class="col-md-4 text-secondary">
             <div id="abouttec"><i class="fa fa-chevron-circle-right fa-lg"></i> 关于制作</div>
-            <div><hr>本网站基于以下开源技术开发<br><a href="http://www.php.net">PHP</a> | <a href="https://laravel.com">Laravel</a> | <a href="https://www.mysql.com">Mysql</a><br><a href="https://getbootstrap.com/">Bootstrap</a> | <a href="http://www.phpmyadmin.net">phpMyAdmin</a> | <a href="https://apache.org">Apache</a></div>
+            <div><hr>本网站基于以下开源技术开发<br><a href="http://www.php.net">PHP</a> | <a href="https://laravel.com">Laravel</a> | <a href="https://www.mysql.com">Mysql</a><br><a href="https://getbootstrap.com/">Bootstrap</a> | <a href="https://vuejs.org">Vue.js</a> | <a href="https://apache.org">Apache</a></div>
         </div>
     </div>
 </div>

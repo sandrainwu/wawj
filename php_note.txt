@@ -62,7 +62,15 @@ get();foreach ($users as $user) {
 
 15\ DB::table('message')->where(['id'=>$message_id])->update(['replyed'=>1]);
 
+16 return 数组;
 
+return json_encode(数组);
+
+return 'json格式字符串'
+
+这三个的区别是：
+（1）第一：http Response Headers 的 Content-Type是application/json
+（2）第二和第三：后者的 http Response Headers 的 Content-Type是text/html;
 
 
 

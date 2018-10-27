@@ -21,8 +21,14 @@ class CrudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($table)//列表
+    public function index($table,Request $request)//列表
     {
+        
+        if($request->filled('pagesize'))
+            $pagesize=$request->pagesize;
+        else
+            $pagesize=20;
+        
         $tablealias;
         switch ($table)
         {
@@ -50,13 +56,7 @@ class CrudController extends Controller
             //;
         }
 
-        $list=DB::table($table)->get();
-
-
-        return view('admin.table'.$table)->with([
-            'list'=>$list,
-            'tablealias'=>$tablealias,
-        ]);
+        return view('admin.table'.$table)->with(['tablealias'=>$tablealias,'pagesize'=>$pagesize,]);
     }
 
     /**
@@ -101,6 +101,18 @@ class CrudController extends Controller
      */
     public function search(Request $request, $table)//查询
     {
-        //
+        if ($request->filled('keyword')&&$request->filled('field')){
+            $temparray=array('account_phone','real_name','email','id_number');
+            if(in_array($request->field, $temparray)){
+                $list=DB::table($table)->where($request->field,'like','%'.($request->keyword).'%')->get();
+            }
+            else
+                $list=DB::table($table)->where([$request->field=>$request->keyword])->get();
+        }
+        else
+            $list=DB::table($table)->get();
+
+        return $list;
     }
+
 }

@@ -9,9 +9,12 @@
     <title><?php echo e(config('app.name', 'Laravel')); ?></title>
     <link href="<?php echo e(asset('css/bootstrap.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('css/font-awesome.min.css')); ?>" rel="stylesheet">
-    <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+    <!-- <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/bootstrap.js')); ?>"></script>
     <script src="<?php echo e(asset('js/popper.min.js')); ?>"></script>
+     -->
+    <script src="<?php echo e(asset('js/vue.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/axios.min.js')); ?>"></script>
 </head>
 <body>
 <style type="text/css">
@@ -26,5 +29,6 @@
 <!-- 顶部导航 -->
 <?php echo $__env->yieldContent('content'); ?>
 <?php echo $__env->yieldContent('bottom'); ?>
+<?php echo $__env->yieldContent('javascript'); ?>
 </body>
 </html>

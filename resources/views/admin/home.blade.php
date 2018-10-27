@@ -677,7 +677,7 @@
             },
             {
                 id: "9001",
-                text: "统计分析",
+                text: "统计数据",
                 icon: "fa fa-bar-chart",
                 children: [
                     {

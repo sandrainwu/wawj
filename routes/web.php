@@ -70,6 +70,6 @@ Route::prefix('admin')->group(function () {
 	Route::post('manage/{table}/', 'CrudController@create');//新增
 	Route::delete('manage/{table}/{id?}', 'CrudController@destroy');//删除
 	Route::patch('manage/{table}/{id?}', 'CrudController@update');//修改
-	Route::patch('manage/{table}/{id?}', 'CrudController@search');//查询
+	Route::put('manage/{table}', 'CrudController@search');//查询
 	
 });
