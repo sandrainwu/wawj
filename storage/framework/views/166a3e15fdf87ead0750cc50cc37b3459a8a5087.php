@@ -1,5 +1,5 @@
 <?php $__env->startSection('top'); ?>
-<div class="text-secondary strong">我爱我家 <i class="fa fa-angle-right"></i> 数据表 <i class="fa fa-angle-right"></i> <?php echo e($tablealias); ?></div>
+<div class="text-secondary strong">WAWJ.COM <i class="fa fa-angle-right"></i> 数据表 <i class="fa fa-angle-right"></i> <?php echo e($tablealias); ?></div>
 <?php $__env->stopSection(); ?> 
 
 <?php $__env->startSection('content'); ?>

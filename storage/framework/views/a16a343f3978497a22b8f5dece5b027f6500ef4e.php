@@ -1,5 +1,5 @@
 <?php $__env->startSection('top_title'); ?>
-<a class="navbar-brand" href="<?php echo e(route('/')); ?>"><img alt="Brand" src="<?php echo e(asset('img/wawj.svg')); ?>" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a><span class="text-white">机构职员-<?php echo e(Auth::user()->real_name); ?></span>
+<a class="navbar-brand" href="<?php echo e(route('/')); ?>"><img alt="Brand" src="<?php echo e(asset('img/wawj.svg')); ?>" width="30" height="30" class="d-inline-block align-top"> WAWJ.COM</a><span class="text-white">机构职员-<?php echo e(Auth::user()->real_name); ?></span>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>

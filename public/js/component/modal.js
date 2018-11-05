@@ -13,12 +13,17 @@ Vue.component('w-modal', {
 				      <div class="modal-body" id="modal-body">\
 				      </div>\
 				      <div class="modal-footer">\
-				        <span id="actions"></span> <button type="button" class="btn btn-secondary" data-dismiss="modal">关 闭</button>\
+				        <span id="actions"></span> <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="closeself">关 闭</button>\
 				      </div>\
 				    </div>\
 				  </div>\
 				</div>\
 			</div>',
+	methods: {    
+	    closeself() {
+	    	this.modalclass=''      
+	    }
+  	},
 	computed:{
                 modalclass:function(){
                     return (this.active=='show')?('show d-block'):('d-none')

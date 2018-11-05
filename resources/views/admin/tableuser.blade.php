@@ -1,7 +1,7 @@
 @extends('layouts.baseframevue')
 
 @section('top')
-<div class="text-secondary strong">我爱我家 <i class="fa fa-angle-right"></i> 数据表 <i class="fa fa-angle-right"></i> {{ $tablealias }}</div>
+<div class="text-secondary strong">WAWJ.COM <i class="fa fa-angle-right"></i> 数据表 <i class="fa fa-angle-right"></i> {{ $tablealias }}</div>
 @endsection 
 
 @section('content')

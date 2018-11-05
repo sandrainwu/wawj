@@ -1,7 +1,7 @@
 @extends('layouts.baseframe')
 
 @section('top_title')
-<a class="navbar-brand" href="{{ route('/') }}"><img alt="Brand" src="{{ asset('img/wawj.svg') }}" width="30" height="30" class="d-inline-block align-top"> 我爱我家</a>
+<a class="navbar-brand" href="{{ route('/') }}"><img alt="Brand" src="{{ asset('img/wawj.svg') }}" width="30" height="30" class="d-inline-block align-top"> WAWJ.COM</a>
 @endsection
 
 @section('content')
