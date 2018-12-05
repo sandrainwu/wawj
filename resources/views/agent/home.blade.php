@@ -25,9 +25,9 @@ color:#eb4e3d;
 }
 </style>
 
-<!-- 中间显示栏 -->
+<!-- 中间显示栏开始 -->
 <div class="tab-content" id="pills-tabContent">
-    <!-- 第1个tab -->
+    <!-- 第1个tab开始 -->
     <div class="tab-pane show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <ul class="myul">
             <li><a href="{{ route('agentBuyHouse') }}"><i class="fa fa-credit-card fa-2x"></i><div>1111111代客买房</div></a></li>
@@ -38,9 +38,9 @@ color:#eb4e3d;
             <li><a href="{{ route('/') }}"><i class="fa fa-black-tie fa-2x"></i><div>111111应聘代理人</div></a></li>
         </ul>
     </div>
-    <!-- 第1个tab -->
+    <!-- 第1个tab结束 -->
 
-    <!-- 第2个tab -->
+    <!-- 第2个tab开始 -->
     <div class="tab-pane" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <br>
         <div class="container">
@@ -62,20 +62,20 @@ color:#eb4e3d;
             </div>
         </div>
     </div>
-    <!-- 第2个tab -->
+    <!-- 第2个tab结束 -->
     
-    <!-- 第3个tab -->
+    <!-- 第3个tab开始 -->
     <div class="tab-pane" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">jjjjjjj</div>
-    <!-- 第3个tab -->
+    <!-- 第3个tab结束 -->
     
-    <!-- 第4个tab -->
+    <!-- 第4个tab开始 -->
     <div class="tab-pane" id="pills-contacts" role="tabpanel" aria-labelledby="pills-contacts-tab">
         <br>
         <div class="container">
             <div class="row border-top">
                 <div class="col my-2">
                     <a href="{{ route('changePassword') }}" class="text-secondary">
-                        <table class="w-100"><tr><td>修改密码</td><td align="right"><span class="badge badge-danger align-text-bottom">{{ $from_client>0 ? $from_client : '' }}</span> <i class="fa fa-key fa-fw"></i> <i class="fa fa-chevron-right"></i></td></tr>
+                        <table class="w-100"><tr><td>修改密码</td><td align="right"><i class="fa fa-key fa-fw"></i> <i class="fa fa-chevron-right"></i></td></tr>
                         </table>
                     </a>
                 </div>
@@ -94,14 +94,14 @@ color:#eb4e3d;
             </div>
         </div>
     </div>
-    <!-- 第4个tab -->
+    <!-- 第4个tab结束 -->
     
 </div>
-<!-- 中间显示栏 -->
+<!-- 中间显示栏结束 -->
 @endsection
 
 @section('bottom')
-<!-- 底部固定栏 -->
+<!-- 底部固定栏开始 -->
     <style type="text/css">
     .nav-link {color: #a2a2a2;}
     .nav-pills .nav-link.active,.nav-pills .show > .nav-link{color: #3d85db;background-color: #f8f9fa;}
@@ -116,7 +116,7 @@ color:#eb4e3d;
         <li class="nav-item"><a class="nav-link" id="pills-contacts-tab" data-toggle="pill" href="#pills-contacts" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fa fa-user-circle fa-2x"></i><div>我的</div></a></li>
       </ul>
     </nav>
-<!-- 底部固定栏 -->
+<!-- 底部固定栏结束 -->
 <script type="text/javascript">
     $(function () {
         hash = window.location.hash

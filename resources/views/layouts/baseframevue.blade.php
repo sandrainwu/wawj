@@ -22,11 +22,11 @@
     body{background-color:transparent;padding: 5px;margin: 0px;}
     .btn-xsm {padding: 0.3rem;font-size: 0.6rem; line-height: 1.5;width:60px;border-radius: 0.2rem;}
 </style>
-<!-- 顶部导航 -->
+<!-- 顶部导航开始 -->
     <nav class="navbar navbar-dark sticky-top border-bottom" style="padding-top: 0.1rem;padding-bottom: 0.2rem;">
         @yield('top')
     </nav>
-<!-- 顶部导航 -->
+<!-- 顶部导航结束 -->
 @yield('content')
 @yield('bottom')
 @yield('javascript')

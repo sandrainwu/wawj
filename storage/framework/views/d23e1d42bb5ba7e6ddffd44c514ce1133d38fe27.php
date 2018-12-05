@@ -377,7 +377,7 @@
 
 <?php $__env->startSection('bottom'); ?>
 
-<!-- 底部固定栏 -->
+<!-- 底部固定栏开始 -->
     <nav class="navbar-toggle fixed-bottom">
       <ul class="nav nav-justified">
         <li class="nav-item"><a class="btn btn-primary btn-block rounded-0 active border-right" id="pills-home-tab" data-toggle="pill" href="#pills-home">选择代理</a></li>
@@ -385,6 +385,6 @@
         <li class="nav-item"><a class="btn btn-primary btn-block rounded-0 border-right" id="pills-contact-tab" data-toggle="pill" href="#pills-contact">聘请绑定</a></li>
       </ul>
     </nav>
-<!-- 底部固定栏 -->
+<!-- 底部固定栏结束 -->
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

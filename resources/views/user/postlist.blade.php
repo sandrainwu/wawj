@@ -41,7 +41,7 @@
 </div>
 </form>
 <br>
-<!-- 底部按钮 -->
+<!-- 底部按钮开始 -->
 <nav class="navbar fixed-bottom p-0">
     <table class="bg-white w-100">
         <tr style="border-spacing:0;margin: 0px;padding: 0px;">
@@ -50,7 +50,7 @@
         </tr>
     </table>
 </nav>
-<!-- 底部按钮 -->
+<!-- 底部按钮结束 -->
 
 <script type="text/javascript">
     var target=null;

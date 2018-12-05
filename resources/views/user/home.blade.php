@@ -25,7 +25,7 @@ color:#eb4e3d;
 }
 </style>
 
-<!-- 中间显示栏 -->
+<!-- 中间显示栏开始 -->
 <div class="tab-content" id="pills-tabContent">
   	<!-- 第1个tab -->
 	<div class="tab-pane show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -55,8 +55,12 @@ color:#eb4e3d;
 		<br>
 		<div class="container">
 			<div class="row border-top">
-			    <div class="col my-2"><a href="#none" class="text-secondary">修改密码</a></div>
-			    <div class="col my-2 text-right"><a href="#none" class="text-secondary"><i class="fa fa-key fa-fw"></i> <i class="fa fa-chevron-right"></i></a></div>
+				<div class="col my-2">
+				    <a href="{{ route('changePassword') }}" class="text-secondary">
+	                    <table class="w-100"><tr><td>修改密码</td><td align="right"><i class="fa fa-key fa-fw"></i> <i class="fa fa-chevron-right"></i></td></tr>
+	                    </table>
+	                </a>
+	            </div>
 			</div>
 			<div class="row border-top text-secondary">
 			    <div class="col my-2"><a href="#none" class="text-secondary">身份认证</a></div>
@@ -75,11 +79,11 @@ color:#eb4e3d;
 	<!-- 第4个tab -->
 	
 </div>
-<!-- 中间显示栏 -->
+<!-- 中间显示栏结束 -->
 @endsection
 
 @section('bottom')
-<!-- 底部固定栏 -->
+<!-- 底部固定栏开始 -->
     <style type="text/css">
     .nav-link {color: #a2a2a2;}
     .nav-pills .nav-link.active,.nav-pills .show > .nav-link{color: #3d85db;background-color: #f8f9fa;}
@@ -94,5 +98,5 @@ color:#eb4e3d;
         <li class="nav-item"><a class="nav-link" id="pills-contacts-tab" data-toggle="pill" href="#pills-contacts" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fa fa-user-circle fa-2x"></i><div>我的</div></a></li>
       </ul>
     </nav>
-<!-- 底部固定栏 -->
+<!-- 底部固定栏结束 -->
 @endsection

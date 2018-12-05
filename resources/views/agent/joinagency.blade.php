@@ -43,7 +43,7 @@
 </div>
 </form>
 <br>
-<!-- modal -->
+<!-- modal开始 -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -62,8 +62,8 @@
   </div>
 </div>
 
-<!-- modal -->
-<!-- 底部按钮 -->
+<!-- modal结束 -->
+<!-- 底部按钮开始 -->
 <nav class="navbar fixed-bottom p-0">
     <table class="bg-white w-100">
         <tr style="border-spacing:0;margin: 0px;padding: 0px;">
@@ -72,7 +72,7 @@
         </tr>
     </table>
 </nav>
-<!-- 底部按钮 -->
+<!-- 底部按钮结束 -->
 
 <script type="text/javascript">
     var target=null;

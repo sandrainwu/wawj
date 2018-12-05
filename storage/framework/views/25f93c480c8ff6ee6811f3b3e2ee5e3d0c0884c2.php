@@ -1,31 +1,30 @@
-@extends('layouts.baseframe')
+<?php $__env->startSection('top_title'); ?>
+<a class="navbar-brand" href="<?php echo e(route('agentHome')); ?>"><i class="fa fa-chevron-left"></i></a><span class="text-white">修改密码</span>
+<?php $__env->stopSection(); ?>
 
-@section('top_title')
-<a class="navbar-brand" href="{{ route('agentHome') }}"><i class="fa fa-chevron-left"></i></a><span class="text-white">修改密码</span>
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <br>
 <form id="changePassword">
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            {{ csrf_field() }}
+            <?php echo e(csrf_field()); ?>
+
             <div class="row form-group">
                 <div class="col-md-12 input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-user-o fa-fw"></i></div>
                     </div>
-                    <input type="tel" class="form-control" autocomplete="on" placeholder="手机号码" aria-label="请输入11位手机号" aria-describedby="btnGroupAddon" id="account_phone" class="form-control" name="account_phone" value="{{ $username or old('account_phone') }}" required autofocus>
+                    <input type="tel" class="form-control" autocomplete="on" placeholder="手机号码" aria-label="请输入11位手机号" aria-describedby="btnGroupAddon" id="account_phone" class="form-control" name="account_phone" value="<?php echo e(isset($username) ? $username : old('account_phone')); ?>" required autofocus>
                 </div>
             </div>
-            @if ($errors->has('account_phone'))
+            <?php if($errors->has('account_phone')): ?>
             <div class="row">
                 <div class="col-md-12">
-                    <span class="text-danger"><strong>{{ $errors->first('account_phone') }}</strong></span>
+                    <span class="text-danger"><strong><?php echo e($errors->first('account_phone')); ?></strong></span>
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
 
 
             <div class="row form-group">
@@ -33,16 +32,16 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text" id="btnGroupAddon1"><i class="fa fa-unlock-alt fa-fw"></i></div>
                     </div>
-                    <input placeholder="旧密码" autocomplete="off" type="password" aria-describedby="btnGroupAddon1" id="password" class="form-control" name="password" value="{{ $password or '' }}" required>
+                    <input placeholder="旧密码" autocomplete="off" type="password" aria-describedby="btnGroupAddon1" id="password" class="form-control" name="password" value="<?php echo e(isset($password) ? $password : ''); ?>" required>
                 </div>
             </div>
-            @if ($errors->has('password'))
+            <?php if($errors->has('password')): ?>
             <div class="row">
                 <div class="col-md-12">
-                    <span class="text-danger"><strong>{{ $errors->first('password') }}</strong></span>
+                    <span class="text-danger"><strong><?php echo e($errors->first('password')); ?></strong></span>
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
             
             <div class="row form-group">
                 <div class="col-md-12 input-group">
@@ -104,7 +103,7 @@
                 }
             });
             if (allfilled) {
-                $.post("{{ $_SERVER['REQUEST_URI'] }}",$("#changePassword").serialize(),function(result){
+                $.post("<?php echo e($_SERVER['REQUEST_URI']); ?>",$("#changePassword").serialize(),function(result){
                     if(result==1){
                         $('#tiptext').html('密码修改成功~')
                     }
@@ -124,4 +123,5 @@
           }, 2000);
     })
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.baseframe', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
