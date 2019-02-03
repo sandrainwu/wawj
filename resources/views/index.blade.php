@@ -68,17 +68,17 @@
     <div class="row">
         <div class="col-md-4 text-secondary">
             <div id="aboutus"><i class="fa fa-chevron-circle-right fa-lg"></i> 关于我们</div><hr>
-            <p>我们都租过、买过房子。<br>交易中机构只提供简单的咨询、引导服务，出现问题由交易双方自行解决；信息都是用户的，为什么要为自己的信息支付高昂的代价？<br>一次不愉快的购房经历让我们陷入沉思…</p>
+            <p>每个人可能都需要租房或买房<br>互联网能不能尽可能地降低交易成本？<br>房地产行业更需要信息共享精神</p>
         </div>
         
         <div class="col-md-4 text-secondary">
             <div id="aboutweb"><i class="fa fa-chevron-circle-right fa-lg"></i> 关于网站/APP</div>
-            <div><hr>网站宗旨：<br>用户信息的价值属于用户自己<br>各类个人、机构用户永久免费<br>监管各类用户以遵守既定规则</div>
+            <div><hr>网站宗旨：<br>用户信息的价值属于用户<br>对所有个人、机构用户永久免费<br>我们只提供交易平台并监督用户遵守既定规则</div>
         </div>
 
         <div class="col-md-4 text-secondary">
             <div id="abouttec"><i class="fa fa-chevron-circle-right fa-lg"></i> 关于制作</div>
-            <div><hr>本网站基于以下开源技术开发<br><a href="http://www.php.net">PHP</a> | <a href="https://laravel.com">Laravel</a> | <a href="https://www.mysql.com">Mysql</a><br><a href="https://getbootstrap.com/">Bootstrap</a> | <a href="https://vuejs.org">Vue.js</a> | <a href="https://apache.org">Apache</a></div>
+            <div><hr>本网站基于以下开源技术<br><a href="http://www.php.net">PHP</a> | <a href="https://laravel.com">Laravel</a> | <a href="https://www.mysql.com">Mysql</a><br><a href="https://getbootstrap.com/">Bootstrap</a> | <a href="https://vuejs.org">Vue.js</a> | <a href="https://apache.org">Apache</a></div>
         </div>
     </div>
 </div>
